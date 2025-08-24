@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/member.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("../form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- sub-layout -->
+      <section class="sub-layout mypage">
+        <div class="container">
+          <nav class="lnb">
+            <div class="lnb-header">
+              <small>대출업체가 모두 한 곳에, 추천대출!</small>
+              <strong>마이페이지</strong>
+            </div>
+            <div class="lnb-body">
+              <ul>
+                <li class="active"><a href="/member/mypage3">광고</a></li>
+                <li><a href="/member/mypage">계정설정</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="sub-content">
+            <article class="mypage-2">
+              <div class="article-header">
+                <h3>광고</h3>
+              </div>
+              <div class="article-content">
+                <ul class="ad-list">
+                  <% advertisingGuides.forEach((item) => { %>
+                  <li>
+                    <div class="box">
+                      <strong><%= item.title %></strong>
+                      <p class="amount">
+                        <b><%= item.amount %></b>원 (
+                        <%= item.standard %>
+                        )
+                      </p>
+                      <!-- <span class="date">2025-05-27 ~ 2025-07-27</span> -->
+                      <hr />
+                      <ul>
+                        <li>
+                          <p>
+                            <b>광고 위치</b>
+                            <%= item.position %>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <b>상품 설명</b>
+                            <%= item.description %>
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+  </body>
+</html>

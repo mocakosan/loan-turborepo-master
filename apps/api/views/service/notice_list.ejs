@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/service.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("../form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- sub-layout -->
+      <section class="sub-layout">
+        <div class="container">
+          <nav class="lnb">
+            <div class="lnb-header">
+              <small>대출업체가 모두 한 곳에, 추천대출!</small>
+              <strong>고객센터</strong>
+            </div>
+            <div class="lnb-body">
+              <ul>
+                <li class="active">
+                  <a href="/service/notice_list">공지사항</a>
+                </li>
+                <li><a href="/service/one_inquiry">1:1 문의</a></li>
+                <li>
+                  <a href="/service/advertising_inquiry">광고문의</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="sub-content">
+            <article class="notice-list">
+              <div class="article-header">
+                <h3>공지사항</h3>
+              </div>
+              <div class="article-content">
+                <!-- board-list -->
+                <div class="board-list default">
+                  <ul>
+                    <li>
+                      <ul>
+                        <li>번호</li>
+                        <li>제목</li>
+                        <li>작성일</li>
+                        <li>조회</li>
+                      </ul>
+                    </li>
+
+                    <% notices.forEach((item) => { %>
+                    <li>
+                      <ul>
+                        <li class="num"><%= item.id %></li>
+                        <li>
+                          <a href="/service/notice_view/<%= item.id %>"
+                            ><%= item.title %></a
+                          >
+                        </li>
+                        <li class="date"><%= item.createdAt %></li>
+                        <li class="hit"><%= item.hits %></li>
+                      </ul>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </div>
+
+                <!-- pagination -->
+                <nav class="pagination">
+                  <ol>
+                    <!-- 이전 페이지 버튼 -->
+                    <% if (hasPrevPage) { %>
+                    <li class="first">
+                      <a
+                        href="?page=<%= Number(startPage) %>&search=<%= search %>"
+                      ></a>
+                    </li>
+                    <li class="prev">
+                      <a
+                        href="?page=<%= Number(page) - 1 %>&search=<%= search %>"
+                      ></a>
+                    </li>
+                    <% } %>
+
+                    <!-- 페이지 번호 목록 -->
+                    <% pages.forEach(function(item) { %>
+                    <% if (item === Number(page)) { %>
+                    <li class="active"><a href="#"><%= item %></a></li>
+                    <% } else { %>
+                    <li>
+                      <a href="?page=<%= item %>&search=<%= search %>"
+                        ><%= item %></a
+                      >
+                    </li>
+                    <% } %>
+                    <% }) %>
+
+                    <!-- 다음 페이지 버튼 -->
+                    <% if (hasNextPage) { %>
+                    <li class="next">
+                      <a
+                        href="?page=<%= Number(page) + 1 %>&search=<%= search %>"
+                      ></a>
+                    </li>
+                    <li class="last">
+                      <a
+                        href="?page=<%= Number(endPage) %>&search=<%= search %>"
+                      ></a>
+                    </li>
+                    <% }  %>
+                  </ol>
+                </nav>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+  </body>
+</html>

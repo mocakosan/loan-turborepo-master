@@ -1,0 +1,38 @@
+# Node.js
+node_modules
+npm-debug.log
+pnpm-debug.log
+yarn-error.log
+
+# TurboRepo
+**/node_modules
+**/dist
+**/.turbo
+**/.next
+**/.out
+**/.cache
+
+# VSCODE & system files
+.vscode
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Logs
+*.log
+
+# Build artifacts
+apps/**/dist
+apps/**/.next
+apps/**/out
+
+# Docker files
+docker-compose.override.yml
+
+# Env files
+.env
+.env.*
+apps/**/.env*

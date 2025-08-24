@@ -1,0 +1,45 @@
+<aside class="quick-banner">
+  <ul>
+    <li>
+      <a
+        href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%8C%80%EC%B6%9C%EC%9D%B4%EC%9E%90%EA%B3%84%EC%82%B0%EA%B8%B0"
+        target="_blank"
+      >
+        <img src="/assets/images/ico_quick01.png" alt="" />
+        <span>대출상환금<br />이자 계산기</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.clfa.or.kr/popup_fcsc.asp" target="_blank">
+        <img src="/assets/images/ico_quick02.png" alt="" />
+        <span>등록대부업체<br />통합조회</span>
+      </a>
+    </li>
+  </ul>
+  <a
+    href="https://www.fss.or.kr/fss/main/contents.do?menuNo=200343"
+    target="_blank"
+  >
+    <img src="/assets/images/img_quick03.png" alt="" />
+  </a>
+</aside>
+
+<aside class="quick-sponsor-ad">
+  <div class="sponsor-ad-text">스폰서 광고</div>
+
+  <% sponsorAds.forEach((item) => { %>
+  <div class="sponsor-ad-card">
+    <div class="card-head">
+      <span><%= item.lenderName %></span>
+    </div>
+    <div class="card-body">
+      <div>
+        <span><%= item.title1 %></span>
+        <span><%= item.title2 %></span>
+      </div>
+
+      <a href="<%= item.link %>">바로가기</a>
+    </div>
+  </div>
+  <% }) %>
+</aside>

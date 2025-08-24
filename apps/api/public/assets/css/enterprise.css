@@ -1,0 +1,430 @@
+@import "//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, etails, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button, hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-family: inherit;
+}
+
+main, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, hr {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  position: relative;
+  min-width: 360px;
+  width: 100%;
+  font-size: 13px;
+  color: #333;
+  line-height: 1;
+  font-weight: 400;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  word-break: keep-all;
+  box-sizing: border-box;
+  padding-top: 140px;
+}
+body *, body *::before, body *::after {
+  box-sizing: border-box;
+}
+@media (max-width: 1024px) {
+  body {
+    padding-top: 136px;
+  }
+}
+
+input, select, textarea {
+  font-family: inherit;
+  outline: none;
+  resize: none;
+}
+
+a, button {
+  color: #333;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  background: none;
+}
+a:hover, button:hover {
+  color: #333;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: 1270px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  display: block;
+  width: 100%;
+  padding: 0 50px;
+}
+@media (max-width: 1024px) {
+  .container-fluid {
+    padding: 0 20px;
+  }
+}
+
+/* area-enterprise, items-enterprise, lately-visit */
+.area-enterprise, .items-enterprise, .lately-visit {
+  padding-top: 30px;
+}
+.area-enterprise .container .section-content .pagination, .items-enterprise .container .section-content .pagination, .lately-visit .container .section-content .pagination {
+  margin-top: 50px;
+}
+@media (max-width: 1024px) {
+  .area-enterprise .container .section-content .pagination, .items-enterprise .container .section-content .pagination, .lately-visit .container .section-content .pagination {
+    margin-top: 20px;
+  }
+}
+
+/* lately-visit */
+.lately-visit {
+  min-height: 50vh;
+}
+
+/* enterprise-details */
+.enterprise-details {
+  padding-top: 40px;
+}
+.enterprise-details .container .section-content .summary {
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid #FFA015;
+}
+.enterprise-details .container .section-content .summary strong {
+  display: block;
+  color: #333;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  line-height: 94px;
+}
+.enterprise-details .container .section-content .details-list {
+  display: table;
+  width: 100%;
+  /*height: 100%;*/
+  padding-top: 20px;
+  table-layout: fixed;
+}
+.enterprise-details .container .section-content .details-list article {
+  display: table-cell;
+  /*height: 100%;*/
+  vertical-align: top;
+}
+.enterprise-details .container .section-content .details-list article h4 {
+  display: block;
+  color: #333;
+  font-size: 17px;
+  line-height: 25px;
+  font-weight: bold;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  background-image: url(/assets/images/sub/ico_title01.png);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto auto;
+}
+.enterprise-details .container .section-content .details-list article .explain-content {
+  /*position: relative;
+  height: 100%;*/
+  padding: 25px 20px;
+  border-radius: 15px;
+  background-color: rgba(255, 160, 21, 0.13);
+}
+.enterprise-details .container .section-content .details-list article .explain-content > p {
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.028px;
+}
+.enterprise-details .container .section-content .details-list article.company-info {
+  position: relative;
+  padding-right: 15px;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li {
+  padding-left: 20px;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl > dt, .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl dd {
+  display: table-cell;
+  font-size: 15px;
+  color: #333;
+  line-height: 22px;
+  font-weight: 500;
+  vertical-align: top;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl dt {
+  width: 160px;
+  color: #999;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl dd > .btns {
+  display: none;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li ~ li {
+  margin-top: 20px;
+}
+.enterprise-details .container .section-content .details-list article.company-info > ul > li ~ li {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #FFA015;
+}
+.enterprise-details .container .section-content .details-list article.company-info .btn-area {
+  position: absolute;
+  top: 45px;
+  right: 15px;
+  width: 180px;
+}
+.enterprise-details .container .section-content .details-list article.company-info .btn-area .btn-modal {
+  display: block;
+  width: 100%;
+  color: #FFA015;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 42px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  border: 1px solid #FFA015;
+  background-color: #fff;
+}
+.enterprise-details .container .section-content .details-list article.company-info .btn-area .btn-modal:hover {
+  color: #fff;
+  background-color: #FFA015;
+}
+.enterprise-details .container .section-content .details-list article.company-info .btn-area .btn-modal ~ .btn-modal {
+  margin-top: 5px;
+}
+.enterprise-details .container .section-content .details-list article.company-info .attention {
+  display: block;
+  font-size: 12px;
+  color: #FFA015;
+  font-weight: 400;
+  margin-top: 10px;
+}
+.enterprise-details .container .section-content .details-list article.company-info .attention:before {
+  display: inline-block;
+  content: "* ";
+  margin-right: 2px;
+}
+.enterprise-details .container .section-content .details-list article.company-info hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 20px 0;
+  background-color: #CACACA;
+}
+.enterprise-details .container .section-content .details-list article.explain {
+  padding-left: 15px;
+}
+.enterprise-details .container .section-content .attention-list {
+  margin-top: 140px;
+  padding: 30px;
+  background-color: #676767;
+}
+.enterprise-details .container .section-content .attention-list dl dt, .enterprise-details .container .section-content .attention-list dl dd {
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.enterprise-details .container .section-content .attention-list dl dt {
+  font-size: 15px;
+}
+.enterprise-details .container .section-content .attention-list dl dd {
+  font-size: 13px;
+  margin-top: 10px;
+}
+.enterprise-details .container .section-content .attention-list dl dd b {
+  color: #FFA015;
+  font-weight: 500;
+}
+.enterprise-details .container .section-content .banner {
+  padding: 40px 55px;
+  margin-top: 30px;
+  border: 1px solid #E5E5E5;
+}
+.enterprise-details .container .section-content .banner > dl {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.enterprise-details .container .section-content .banner > dl dt, .enterprise-details .container .section-content .banner > dl dd {
+  display: table-cell;
+  vertical-align: middle;
+}
+.enterprise-details .container .section-content .banner > dl > dt {
+  width: 200px;
+  border-right: 1px solid #CACACA;
+}
+.enterprise-details .container .section-content .banner > dl > dt img {
+  display: block;
+  max-width: 100%;
+}
+.enterprise-details .container .section-content .banner > dl > dd {
+  color: #666;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  padding-left: 20px;
+}
+.enterprise-details .container .section-content .banner > dl > dd span {
+  color: #000;
+}
+.enterprise-details .container .section-content .banner > dl > dd small {
+  font-size: 11px;
+  color: #999;
+}
+@media (max-width: 1200px) {
+  .enterprise-details .container .section-content .details-list article.company-info .btn-area {
+    width: 140px;
+  }
+}
+@media (max-width: 1024px) {
+  .enterprise-details .container .section-header {
+    text-align: center;
+  }
+  .enterprise-details .container .section-content .summary strong {
+    font-size: 20px;
+    line-height: 60px;
+  }
+  .enterprise-details .container .section-content .details-list {
+    padding-top: 25px;
+  }
+  .enterprise-details .container .section-content .details-list article {
+    display: block;
+    width: 100%;
+    padding: 0 !important;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li {
+    padding-left: 0;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl dt, .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl dd {
+    font-size: 14px;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl > dt {
+    width: 150px;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl > dd > .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl > dd > .btns .tel-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFA015;
+    color: #fff;
+    padding: 0 10px;
+    height: 25px;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li > dl > dd > .btns .sms-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    color: #FFA015;
+    padding: 0 10px;
+    height: 25px;
+    border: 1px solid #FFA015;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info > ul > li > ul > li ~ li {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #E3E3E3;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info .btn-area {
+    position: static;
+    width: 100%;
+    transform: none;
+    margin-top: 40px;
+    padding-bottom: 30px;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info .btn-area > .btn-modal {
+    display: block;
+    width: 100%;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info .btn-area > .btn-modal ~ .btn-modal {
+    margin-top: 7px;
+  }
+  .enterprise-details .container .section-content .details-list article.company-info .attention {
+    font-size: 10px;
+    line-height: 14px;
+  }
+  .enterprise-details .container .section-content .attention-list {
+    margin-top: 20px;
+  }
+  .enterprise-details .container .section-content .banner {
+    margin-top: 20px;
+    padding: 40px 25px;
+  }
+  .enterprise-details .container .section-content .banner > dl {
+    display: block;
+  }
+  .enterprise-details .container .section-content .banner > dl > dt, .enterprise-details .container .section-content .banner > dl dd {
+    display: block;
+    width: 100% !important;
+  }
+  .enterprise-details .container .section-content .banner > dl dt {
+    padding: 0;
+    border-right: 0;
+    padding-bottom: 25px;
+  }
+  .enterprise-details .container .section-content .banner > dl dt img {
+    display: block;
+    margin: 0 auto;
+  }
+  .enterprise-details .container .section-content .banner > dl dd {
+    padding: 0;
+    padding-top: 25px;
+    border-top: 1px solid #CACACA;
+  }
+}
+
+/* no-data */
+.no-data {
+  padding: 100px 0;
+  text-align: center;
+}
+.no-data p {
+  display: block;
+  color: #878787;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=enterprise.css.map */

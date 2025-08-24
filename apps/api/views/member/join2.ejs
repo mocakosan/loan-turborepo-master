@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/member.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- join2 -->
+      <section class="join2">
+        <div class="container">
+          <div class="section-header">
+            <h3>회원가입</h3>
+          </div>
+          <form id="joinForm" class="section-content">
+            <!-- write-form -->
+            <div class="write-form">
+              <ul>
+                <li>
+                  <dl>
+                    <dt class="essential">대표자명</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="name"
+                          class="form-control"
+                          placeholder="대표자명"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">아이디</dt>
+                    <dd>
+                      <div class="form-group type-2">
+                        <input
+                          type="text"
+                          name="identity"
+                          class="form-control"
+                          placeholder="영문자, 숫자, _만 입력 가능. 최소 3자이상 입력하세요."
+                        />
+                        <button class="btn-find" id="checkIdentityButton">
+                          중복확인
+                        </button>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">비밀번호</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="password"
+                          class="form-control"
+                          placeholder="비밀번호"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">비밀번호 확인</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="passwordConfirm"
+                          class="form-control"
+                          placeholder="비밀번호 확인"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">이메일</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          name="email"
+                          class="form-control"
+                          placeholder="이메일"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      전화번호<br class="visible-sm" />(대표자명의)
+                    </dt>
+                    <dd>
+                      <div class="form-group type-2">
+                        <input
+                          type="text"
+                          name="phoneNumber"
+                          class="form-control"
+                          placeholder="예시) 010-0000-0000"
+                        />
+                        <button class="btn-find" id="verifyPhoneButton">
+                          본인인증
+                        </button>
+                      </div>
+
+                      <div
+                        class="form-group type-2"
+                        id="verificationCodeGroup"
+                        style="display: none"
+                      >
+                        <input
+                          type="text"
+                          name="verificationCode"
+                          class="form-control"
+                          placeholder="인증번호 입력"
+                        />
+                        <button class="btn-find" id="confirmCodeButton">
+                          번호확인
+                        </button>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential top">
+                      상호명<br class="visible-sm" />(업체명)
+                    </dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="companyName"
+                          class="form-control"
+                          placeholder="사업자등록증에 기재된 상호명"
+                        />
+                        <small
+                          >대부업 등록증을 참고하여 기입해 주시기
+                          바랍니다.</small
+                        >
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      대부(중개)<br class="visible-sm" />등록번호
+                    </dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="registrationNumber"
+                          class="form-control"
+                          placeholder="대출상담사는 여신등록번호 기재"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      등록<br class="visible-sm" />유효기간
+                    </dt>
+                    <dd>
+                      <div class="form-group expiry-date">
+                        <input
+                          type="text"
+                          name="registrationStartDate"
+                          class="form-control"
+                          placeholder="0000-00-00"
+                        />
+                        <span>~</span>
+                        <input
+                          type="text"
+                          name="registrationEndDate"
+                          class="form-control"
+                          placeholder="0000-00-00"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      대출광고<br class="visible-sm" />
+                      전화번호
+                    </dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="advertisingPhoneNumber"
+                          class="form-control"
+                          placeholder="000-0000-0000"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      사업장<br class="visible-sm" />
+                      소재지
+                    </dt>
+                    <dd>
+                      <div class="form-group type-2">
+                        <input
+                          type="text"
+                          id="zip"
+                          name="zip"
+                          class="form-control"
+                          placeholder="00000"
+                        />
+                        <button class="btn-find" id="searchAddressBtn">
+                          주소검색
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          id="address"
+                          name="address"
+                          class="form-control"
+                          placeholder="기본주소"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          id="addressDetail"
+                          name="addressDetail"
+                          class="form-control"
+                          placeholder="상세주소"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      대부업<br class="visible-sm" />
+                      등록기관
+                    </dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="registrationAuthority"
+                          class="form-control"
+                          placeholder="예) 서울 강남구 지역경제과"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">
+                      대부업<br class="visible-sm" />
+                      등록기관<br class="visible-sm" />
+                      전화번호
+                    </dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="registrationAuthorityPhoneNumber"
+                          class="form-control"
+                          placeholder="000-0000-0000"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li class="type-2">
+                  <dl>
+                    <dt class="essential">
+                      대부업<br class="visible-sm" />
+                      등록증
+                    </dt>
+                    <dd>
+                      <div class="attach-file">
+                        <span class="essential">(필수)</span>
+                        <input
+                          type="file"
+                          name="loanLicense"
+                          accept="image/*"
+                        />
+                      </div>
+                      <p class="note">
+                        대부업등록증은 이미지(스캔본)만 업로드 해주세요<br
+                          class="visible-sm"
+                        />
+                        (없는 경우 팩스나 메일, 우편으로 받으신 후 확인 하셔도
+                        됩니다.)
+                      </p>
+                    </dd>
+                  </dl>
+                </li>
+                <li class="type-2">
+                  <dl>
+                    <dt class="essential">
+                      사업자<br class="visible-sm" />
+                      등록증
+                    </dt>
+                    <dd>
+                      <div class="attach-file">
+                        <span>(선택)</span>
+                        <input
+                          type="file"
+                          name="businessLicense"
+                          accept="image/*"
+                        />
+                      </div>
+                      <p class="note">
+                        사업자등록증은 이미지(스캔본)만 업로드 해주세요<br
+                          class="visible-sm"
+                        />
+                        (팩스/이메일로 보내주셔도 됩니다.)
+                      </p>
+                    </dd>
+                  </dl>
+                </li>
+                <li class="type-2">
+                  <dl>
+                    <dt class="essential">
+                      대출문의<br class="visible-sm" />
+                      SMS 수신
+                    </dt>
+                    <dd>
+                      <div class="check-area2">
+                        <input type="checkbox" id="check-sns" checked />
+                        <label for="check-sns"
+                          ><span class="icon"></span> 휴대폰 문자메세지를
+                          받겠습니다.</label
+                        >
+                      </div>
+                      <p class="note">
+                        실시간 대출문의 등록시 알림 문자를 수신 할 수 있습니다.
+                      </p>
+                    </dd>
+                  </dl>
+                </li>
+              </ul>
+            </div>
+            <!-- btn-area -->
+            <div class="btn-area">
+              <div>
+                <button type="button" class="btn btn-cancel" id="cancelButton">
+                  취소하기
+                </button>
+                <button type="submit" class="btn btn-submit">확인</button>
+              </div>
+            </div>
+            <p class="summary">작성 완료 후 광고 신청 페이지로 이동합니다.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+
+    <script>
+      // 주소검색 클릭
+      const searchAddressBtn = document.getElementById('searchAddressBtn');
+      searchAddressBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        new daum.Postcode({
+          oncomplete: function (data) {
+            // 주소 데이터 처리
+            const roadAddr = data.roadAddress; // 도로명 주소
+            const zonecode = data.zonecode; // 우편번호
+
+            document.getElementById('zip').value = zonecode;
+            document.getElementById('address').value = roadAddr;
+            document.getElementById('addressDetail').focus();
+          },
+        }).open();
+      });
+    </script>
+    <script>
+      const form = document.getElementById('joinForm');
+
+      // 본인인증 버튼 이벤트
+      const verifyPhoneButton = document.getElementById('verifyPhoneButton');
+      verifyPhoneButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const phoneNumber = formData.get('phoneNumber');
+
+        // 휴대폰 번호 유효성 검사 (010-XXXX-XXXX 또는 010XXXXXXXX 형식)
+        const phoneRegex = /^(010-\d{4}-\d{4}|010\d{8})$/;
+        if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
+          return alert(
+            '올바른 휴대폰 번호를 입력해주세요. (예: 010-1234-5678 또는 01012345678)',
+          );
+        }
+
+        fetch('/enterprisers/send-verification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phoneNumber: phoneNumber.replace(/\D/g, '') }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            document.getElementById('verificationCodeGroup').style.display =
+              'block';
+
+            alert('인증번호가 발송되었습니다.');
+          })
+          .catch((error) => {
+            alert(error.message || '인증번호 발송에 실패했습니다.');
+          });
+      });
+
+      let isPhoneVerified = false; // 인증 완료 상태 변수
+
+      // 번호확인 버튼 이벤트
+      const confirmCodeButton = document.getElementById('confirmCodeButton');
+      confirmCodeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const phoneNumber = formData.get('phoneNumber');
+        const verificationCode = formData.get('verificationCode');
+
+        if (!phoneNumber.length) {
+          return alert('전화번호를 입력해주세요.');
+        }
+
+        if (!verificationCode.length) {
+          return alert('인증번호를 입력해주세요.');
+        }
+
+        fetch('/enterprisers/verify-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phoneNumber: phoneNumber.replace(/\D/g, ''),
+            verificationCode,
+          }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            isPhoneVerified = true; // 인증 완료
+            verifyPhoneButton.disabled = true; // 본인인증 버튼 비활성화
+            document.getElementById('verificationCodeGroup').style.display =
+              'none';
+            document.querySelector('input[name="phoneNumber"]').readOnly = true;
+
+            alert('인증이 완료되었습니다.');
+          })
+          .catch((error) => {
+            alert(error.message || '인증번호가 올바르지 않습니다.');
+          });
+      });
+
+      // 취소 버튼 클릭 이벤트
+      const cancelButton = document.getElementById('cancelButton');
+      cancelButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.history.back();
+      });
+
+      // 아이디 중복확인 버튼 클릭 이벤트
+      const checkIdentityButton = document.getElementById(
+        'checkIdentityButton',
+      );
+      checkIdentityButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const identity = formData.get('identity');
+        if (!identity.length) {
+          return alert('아이디를 입력해주세요.');
+        }
+
+        fetch('/enterprisers/check-identity', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ identity }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            alert('사용 가능한 아이디입니다.');
+          })
+          .catch((error) => {
+            alert(error.message || '이미 사용 중인 아이디입니다.');
+          });
+      });
+
+      // 회원가입 버튼 클릭 이벤트
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // 기본 제출 막기 (페이지 이동 막음)
+
+        if (!isPhoneVerified) {
+          return alert('휴대폰 본인인증을 완료해주세요.');
+        }
+
+        const formData = new FormData(form);
+
+        const name = formData.get('name');
+        const identity = formData.get('identity');
+        const password = formData.get('password');
+        const passwordConfirm = formData.get('passwordConfirm');
+        const email = formData.get('email');
+        const phoneNumber = formData.get('phoneNumber');
+        const companyName = formData.get('companyName');
+        const registrationNumber = formData.get('registrationNumber');
+        const registrationStartDate = formData.get('registrationStartDate');
+        const registrationEndDate = formData.get('registrationEndDate');
+        const advertisingPhoneNumber = formData.get('advertisingPhoneNumber');
+        const zip = formData.get('zip');
+        const address = formData.get('address');
+        const addressDetail = formData.get('addressDetail');
+        const registrationAuthority = formData.get('registrationAuthority');
+        const registrationAuthorityPhoneNumber = formData.get(
+          'registrationAuthorityPhoneNumber',
+        );
+
+        const loanLicense = formData.get('loanLicense');
+
+        const isReceiveSMS = document.querySelector('#check-sns');
+
+        if (!name.length) {
+          return alert('대표자명을 입력해주세요.');
+        }
+
+        if (!identity.length) {
+          return alert('아이디를 입력해주세요.');
+        }
+
+        if (!password.length) {
+          return alert('비밀번호를 입력해주세요.');
+        }
+
+        if (password !== passwordConfirm) {
+          return alert('비밀번호 확인이 올바르지 않습니다.');
+        }
+
+        if (!email.length) {
+          return alert('이메일을 입력해주세요.');
+        }
+
+        if (!phoneNumber.length) {
+          return alert('전화번호(대표자명의)를 입력해주세요.');
+        }
+
+        if (!companyName.length) {
+          return alert('상호명(업체명)을 입력해주세요.');
+        }
+
+        if (!registrationNumber.length) {
+          return alert('대부(중개)등록번호를 입력해주세요.');
+        }
+        if (!registrationStartDate || !registrationEndDate) {
+          return alert('등록유효기간을 입력해주세요.');
+        }
+
+        if (!advertisingPhoneNumber) {
+          return alert('대출광고 전화번호를 입력해주세요.');
+        }
+
+        if (!zip || !address || !addressDetail) {
+          return alert('사업장 소재지를 입력해주세요.');
+        }
+
+        if (!registrationAuthority) {
+          return alert('대부업 등록기관을 입력해주세요.');
+        }
+
+        if (!registrationAuthorityPhoneNumber) {
+          return alert('대부업 등록기관 전화번호를 입력해주세요.');
+        }
+
+        if (loanLicense.size === 0) {
+          return alert('대부업 등록증은 필수 항목입니다.');
+        }
+
+        formData.append('isReceiveSMS', isReceiveSMS.checked);
+
+        fetch('/enterprisers', {
+          method: 'POST',
+          body: formData,
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 201) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            console.info('서버 응답:', data);
+            form.reset();
+            alert('회원가입을 완료했습니다.');
+
+            window.location.href = `/member/login`;
+          })
+          .catch((error) => {
+            console.error('에러 발생:', error);
+            alert(error?.message || '회원가입을 실패하였습니다.');
+          });
+      });
+    </script>
+  </body>
+</html>

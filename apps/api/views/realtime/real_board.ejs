@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/realtime.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- real-board -->
+      <section class="real-board">
+        <div class="container">
+          <div class="section-header">
+            <h3><span>실시간</span> 대출문의 현황</h3>
+          </div>
+          <div class="section-content">
+            <div class="loan-info">
+              <article class="details-info">
+                <div class="article-header">
+                  <h4>대출문의</h4>
+                </div>
+                <div class="article-content">
+                  <div class="usr-info">
+                    <h5>작성자 정보</h5>
+                    <ul>
+                      <li>
+                        <dl>
+                          <dt>작성자 정보</dt>
+                          <dd><%= loanInquiry.phoneNumber %></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>희망금액</dt>
+                          <% if(loanInquiry.isAfterConsult === true) { %>
+                          <dd>상담후 결정</dd>
+                          <% } else { %>
+                          <dd><%= loanInquiry.amount %>만원</dd>
+                          <% } %>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>지역</dt>
+                          <dd><%= loanInquiry.regionKind.name %></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>직업</dt>
+                          <% if(loanInquiry.isJob) { %>
+                          <dd>있음</dd>
+                          <% } else { %>
+                          <dd>없음</dd>
+                          <% } %>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>나이</dt>
+                          <dd><%= loanInquiry.age %>세</dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>대출종류</dt>
+                          <dd><%= loanInquiry.loanKind?.name %></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>성별</dt>
+                          <dd><%= loanInquiry.gender %></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>작성일시</dt>
+                          <dd><%= loanInquiry.createdAt %></dd>
+                        </dl>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="inquiry-content">
+                    <h5>문의내용</h5>
+                    <p><%- loanInquiry.content.replace(/\n/g, "<br />") %></p>
+                  </div>
+                </div>
+              </article>
+              <article class="enterprise-list">
+                <div class="article-header">
+                  <h4>
+                    해당 문의에 대한 상담 가능 업체
+                    <span><%= loanInquiry.enterprisers.length %></span>개
+                  </h4>
+                </div>
+                <div class="article-content">
+                  <% for(let i = 0, len = 10; i < len; i++) { %> <%
+                  if(loanInquiry.enterprisers[i]) { %>
+                  <ul class="possible">
+                    <li>
+                      <dl>
+                        <dt>상담 가능 업체</dt>
+                        <dd>
+                          <b><%= loanInquiry.enterprisers[i]?.companyName %></b>
+                        </dd>
+                      </dl>
+                      <div class="btn-area">
+                        <a
+                          href="#"
+                          class="btn-reading"
+                          data-company-name="<%= loanInquiry.enterprisers[i]?.companyName %>"
+                          data-phone-number="<%= loanInquiry.enterprisers[i]?.phoneNumber %>"
+                          >업체정보열람 ></a
+                        >
+                      </div>
+                    </li>
+                  </ul>
+                  <% } else { %>
+                  <ul class="impossible">
+                    <li>
+                      <div class="box">
+                        <p>상담 가능업체는 아래 등록버튼을 눌러주세요.</p>
+                        <div class="btn-area">
+                          <a href="#" class="btn-register">+ 등록</a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <% } %>
+                  <% } %>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="section-header">
+            <h3>
+              <span>실시간</span> 대출문의 현황
+              <small
+                >각 지역을 클릭하시면 해당 지역에 등록된 문의를 볼 수
+                있습니다.</small
+              >
+            </h3>
+            <div class="btn-area">
+              <a href="/realtime/real_write" class="btn-write">글쓰기</a>
+            </div>
+          </div>
+          <div class="section-content">
+            <!-- area-list -->
+            <div class="area-list">
+              <ul>
+                <% sidoList.forEach((item) => { %>
+                <li class="<%= item.id === Number(sido) ? 'active' : '' %>">
+                  <a href="?page=1&sido=<%= item.id %>"><%= item.name %></a>
+                </li>
+                <% }) %>
+              </ul>
+            </div>
+            <div class="btn-area">
+              <a href="/realtime/real_write" class="btn-write">글쓰기</a>
+            </div>
+            <!-- board-list -->
+            <div class="board-list">
+              <ul>
+                <li>
+                  <ul>
+                    <li>번호</li>
+                    <li>지역</li>
+                    <li>제목</li>
+                    <li>작성자</li>
+                    <li>작성일</li>
+                    <li>조회</li>
+                  </ul>
+                </li>
+
+                <% loanInquiries.forEach((item) => { %>
+                <li>
+                  <ul>
+                    <li class="num"><%= item.id %></li>
+                    <li class="area"><%= item.regionKind.name %></li>
+                    <li>
+                      <a href="/realtime/real_board/<%= item.id %>"
+                        ><%= item.title %>
+                        <!-- <i class="ico-new"></i> -->
+                      </a>
+                    </li>
+                    <li><%= item.name %></li>
+                    <li class="date"><%= item.createdAt %></li>
+                    <li class="hit"><%= item.hits %></li>
+                  </ul>
+                </li>
+                <% }) %>
+              </ul>
+            </div>
+            <!-- pagination -->
+            <nav class="pagination">
+              <ol>
+                <!-- 이전 페이지 버튼 -->
+                <% if (hasPrevPage) { %>
+                <li class="first">
+                  <a
+                    href="?page=<%= Number(startPage) %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <li class="prev">
+                  <a
+                    href="?page=<%= Number(page) - 1 %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <% } %>
+
+                <!-- 페이지 번호 목록 -->
+                <% pages.forEach(function(item) { %>
+                <% if (item === Number(page)) { %>
+                <li class="active"><a href="#"><%= item %></a></li>
+                <% } else { %>
+                <li>
+                  <a
+                    href="?page=<%= item %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                    ><%= item %></a
+                  >
+                </li>
+                <% } %>
+                <% }) %>
+
+                <!-- 다음 페이지 버튼 -->
+                <% if (hasNextPage) { %>
+                <li class="next">
+                  <a
+                    href="?page=<%= Number(page) + 1 %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <li class="last">
+                  <a
+                    href="?page=<%= Number(endPage) %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <% }  %>
+              </ol>
+            </nav>
+
+            <!-- search-area2 -->
+            <div class="search-area2">
+              <form action="" method="GET" class="form-group">
+                <select class="form-control" name="field">
+                  <option
+                    value="phoneNumber"
+                    selected="<%= field %> === 'phoneNumber'"
+                  >
+                    연락처
+                  </option>
+                  <option value="name" selected="<%= field %> === 'name'">
+                    이름
+                  </option>
+                  <option value="content" selected="<%= field %> === 'content'">
+                    내용
+                  </option>
+                </select>
+                <input
+                  type="text"
+                  name="search"
+                  class="form-control"
+                  placeholder=""
+                  value="<%= search %>"
+                />
+                <button type="submit" class="btn-search">
+                  <img src="/assets/images/sub/ico_search.png" alt="" />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- modal-pop -->
+    <div class="modal-backdrop"></div>
+    <div class="modal-pop">
+      <!-- company-info -->
+      <div class="modal company-info" id="modal-1">
+        <div class="modal-header">
+          <h3>업체정보</h3>
+          <button type="button" class="btn-modal-close">
+            <img src="/assets/images/ico_modal_close.png" alt="" />
+          </button>
+        </div>
+        <div class="modal-content">
+          <ul>
+            <li>
+              <dl>
+                <dt><span>업체명</span></dt>
+                <dd id="modal-company-name"></dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt><span>연락처</span></dt>
+                <dd id="modal-phone-number"></dd>
+              </dl>
+            </li>
+          </ul>
+          <span class="note"
+            >“추천대출”을 보고 연락드렸다고 하시면 상담이 빠르고
+            쉬워집니다.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+    <script>
+      document.addEventListener('click', function (e) {
+        // 업체정보 열람 버튼 클릭 시
+        const readingBtn = e.target.closest('.btn-reading');
+        if (readingBtn) {
+          e.preventDefault();
+
+          const companyName = readingBtn.dataset.companyName;
+          const phoneNumber = readingBtn.dataset.phoneNumber;
+
+          // 모달에 데이터 주입
+          document.getElementById('modal-company-name').textContent =
+            companyName;
+          document.getElementById('modal-phone-number').textContent =
+            phoneNumber;
+
+          // 모달 열기
+          document.querySelector('.modal-backdrop').style.display = 'block';
+          document.getElementById('modal-1').style.display = 'block';
+        }
+
+        // 모달 닫기 버튼 클릭 시
+        if (e.target.closest('.btn-modal-close')) {
+          e.preventDefault();
+          document.querySelector('.modal-backdrop').style.display = 'none';
+          document.getElementById('modal-1').style.display = 'none';
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.btn-register');
+        if (!btn) return;
+
+        e.preventDefault();
+
+        if (!'<%= user %>') {
+          return alert('업체회원만 등록가능합니다.');
+        }
+
+        fetch('/loan-inquiry/enterpriser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            loanInquiryId: Number('<%= loanInquiry.id %>'),
+          }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 201) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            alert('업체가 성공적으로 등록되었습니다.');
+
+            location.reload();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(
+              error?.message ||
+                '등록에 실패했습니다. 잠시 후 다시 시도해주세요.',
+            );
+          });
+      });
+    </script>
+  </body>
+</html>

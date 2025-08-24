@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("./layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("./layout/header") %>
+
+    <!-- nav -->
+    <%- include("./layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("./form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- jumbotron -->
+      <section class="jumbotron">
+        <div class="section-header">
+          <div class="container">
+            <h3 class="title"><span>추천</span> 대출 대부업체</h3>
+          </div>
+        </div>
+        <div class="section-content">
+          <div class="left-space"></div>
+          <div class="container">
+            <figure>
+              <img
+                src="/assets/images/main/img_jumbo_fixed.png"
+                class="visible-lg"
+                alt=""
+              />
+              <img
+                src="/assets/images/main/img_jumbo_fixed_sm.png"
+                class="visible-sm"
+                alt=""
+              />
+            </figure>
+            <div class="jumbo-slider swiper">
+              <ul class="swiper-wrapper">
+                <% recommendedLenders.forEach(item => { %>
+                <li class="swiper-slide">
+                  <div class="box">
+                    <img
+                      src="/assets/images/main/img_jumbo_frame.png"
+                      class="visible-lg"
+                      alt=""
+                    />
+                    <img
+                      src="/assets/images/main/img_jumbo_frame_sm.png"
+                      class="visible-sm"
+                      alt=""
+                    />
+                    <a href="<%= item.link %>">
+                      <div>
+                        <strong
+                          ><span><%= item.title1 %></span>
+                        </strong>
+                        <strong><%= item.title2 %></strong>
+                        <p><%- item.content %></p>
+                        <div class="info">
+                          <hr />
+                          <b><%= item.lenderName %></b>
+                          <span class="btn-tel"><%= item.phoneNumber %></span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="right-space"></div>
+        </div>
+      </section>
+
+      <!-- loan-find -->
+      <section class="loan-find">
+        <div class="container">
+          <article>
+            <div class="article-header">
+              <h3 class="title"><span>지역별</span> 대출 찾기</h3>
+            </div>
+            <div class="article-content">
+              <div class="area-list">
+                <ul>
+                  <% sidoList.forEach((item) => { %>
+                  <li>
+                    <a href="/enterprise/area_enterprise?sido=<%= item.id %>"
+                      ><%= item.name %></a
+                    >
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="article-header">
+              <h3 class="title"><span>상품별</span> 대출 찾기</h3>
+            </div>
+            <div class="article-content">
+              <div class="area-list">
+                <ul>
+                  <% loanList.forEach((item, index) => { %>
+                  <li class="<%= item === '전체' ? 'active' : '' %>">
+                    <a
+                      href="/enterprise/items_enterprise?category=<%= item.id %>"
+                      ><%= item.name %></a
+                    >
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- recommend-banner -->
+      <article class="recommend-banner">
+        <div class="section-header">
+          <h3 class="title">메인 등록 업체</h3>
+          <p>* 배너의 위치는 실시간으로 랜덤 배치됩니다.</p>
+        </div>
+
+        <div class="container">
+          <ul>
+            <% topMainAdvertisings.forEach((item) => { %>
+            <li>
+              <div onclick="window.location.href='<%= item.link %>'">
+                <img src="/assets/images/main/ico_recommend.png" alt="" />
+                <small><%= item.lenderName %></small>
+                <strong
+                  ><span><%= item.title1 %></span>
+                  <%= item.title2 %></strong
+                >
+                <p><%= item.content %></p>
+                <hr />
+
+                <div class="btns">
+                  <a class="tel-web" href="tel:<%= item.phoneNumber %>"
+                    ><%= item.phoneNumber %></a
+                  >
+                  <a class="tel-mobile" href="tel:<%= item.phoneNumber %>"
+                    >전화하기</a
+                  >
+                  <a
+                    class="sms-mobile"
+                    href="sms:<%= item.phoneNumber %>?body=대출이 필요하여 추천대출 보고 연락드립니다~"
+                    >문자하기</a
+                  >
+                </div>
+              </div>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </article>
+
+      <!-- recommend-list -->
+      <article class="recommend-list">
+        <div class="container">
+          <ul>
+            <% lenders.forEach((item) => { %>
+            <%- include("./component/lender-card", { item }) %>
+            <% }) %>
+          </ul>
+        </div>
+      </article>
+
+      <!-- inquiry-enterprise -->
+      <section class="inquiry-enterprise">
+        <div class="container">
+          <article class="inquiry-list">
+            <div class="article-header">
+              <a href="/realtime/real_inquiry" class="title"
+                ><span>NEW</span> 실시간 대출 문의</a
+              >
+              <div class="btn-area">
+                <a href="/realtime/real_write" class="btn-inquiry"
+                  >문의하기 +</a
+                >
+              </div>
+            </div>
+            <div class="article-content">
+              <div class="vertical-slider swiper">
+                <ul class="swiper-wrapper">
+                  <% loanInquiries.forEach((item) => { %>
+                  <li class="swiper-slide">
+                    <a href="/realtime/real_board/<%= item.id %>">
+                      <div class="box">
+                        <dl>
+                          <dt>
+                            <%= item.title %>
+                          </dt>
+                          <dd>
+                            <ul>
+                              <li><%= item.createdAt %></li>
+                              <li><%= item.distanceToNow %></li>
+                            </ul>
+                          </dd>
+                        </dl>
+                      </div>
+                      <div class="details">
+                        <b>
+                          <%= item.regionKind?.name %><br />
+                          <%= item.amount %>만원
+                        </b>
+                      </div>
+                    </a>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="enterprise-list">
+            <div class="article-header">
+              <a href="/enterprise/area_enterprise" class="title">
+                <span>ALL</span> 전체 정식등록 대부업체</a
+              >
+            </div>
+            <div class="article-content">
+              <div>
+                <ul>
+                  <% lineAds.forEach(item => { %>
+                  <li>
+                    <a href="<%= item.link %>">
+                      <div class="box">
+                        <dl>
+                          <dt>
+                            <i class="area"><%= item.region %></i>
+                            <span><%= item.title1 %></span>
+                            <%= item.title2 %>
+                          </dt>
+                          <dd>
+                            <ul>
+                              <li><%= item.createdAt %></li>
+                              <li><%= item.distanceToNow %></li>
+                            </ul>
+                          </dd>
+                        </dl>
+                      </div>
+                      <div class="details">
+                        <b><%= item.lenderName %></b>
+                      </div>
+                    </a>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="caution-banner">
+        <div class="container">
+          <img
+            src="/assets/images/main/img_caution_banner.png"
+            class="visible-lg"
+            alt=""
+          />
+          <img
+            src="/assets/images/main/img_caution_banner_sm.png"
+            class="visible-sm"
+            alt=""
+          />
+        </div>
+      </section>
+
+      <!-- board-list -->
+      <section class="board-list">
+        <div class="container">
+          <ul>
+            <li>
+              <div class="box">
+                <a href="/community/financial_news" class="title"
+                  ><span>금융권 소식</span></a
+                >
+                <a href="/community/financial_news" class="btn-more">more+</a>
+                <ul>
+                  <% financialNews.forEach((item) => { %>
+                  <li>
+                    <a href="<%= item.link %>" target="_blank"
+                      ><%= item.title %>
+                      <span class="date"><%= item.createdAt %></span></a
+                    >
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="box">
+                <a href="/community/loan_news" class="title"
+                  ><span>대부업 소식</span></a
+                >
+                <a href="/community/loan_news" class="btn-more">more+</a>
+                <ul>
+                  <% loanNews.forEach((item) => { %>
+                  <li>
+                    <a href="<%= item.link %>" target="_blank"
+                      ><%= item.title %>
+                      <span class="date"><%= item.createdAt %></span></a
+                    >
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="box">
+                <a href="/service/notice_list" class="title"
+                  ><span>공지사항</span></a
+                >
+                <a href="/service/notice_list" class="btn-more">more+</a>
+                <ul>
+                  <% notices.forEach((item) => { %>
+                  <li>
+                    <a href="/service/notice_view/<%= item.id %>"
+                      ><%= item.title %>
+                      <span class="date"><%= item.createdAt %></span></a
+                    >
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- modal -->
+    <%- include("./layout/modal") %>
+
+    <!-- terms-list -->
+    <%- include("./layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("./layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("./layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+
+    <script>
+      const firstLastId =
+        Number(
+          "<%= loanInquiries.length > 0 ? loanInquiries[loanInquiries.length - 1].id : '' %>",
+        ) || null;
+      let lastId = firstLastId || null;
+
+      const verticalSwiper = new Swiper('.vertical-slider', {
+        slidesPerView: 10,
+        loop: false,
+        spaceBetween: 8,
+        direction: 'vertical',
+        allowTouchMove: false,
+        breakpoints: {
+          1024: {
+            spaceBetween: 15,
+          },
+        },
+        on: {
+          init: async function () {
+            setInterval(() => {
+              verticalSwiper.slideNext();
+            }, 1000);
+          },
+          slideChangeTransitionEnd: async function () {
+            verticalSwiper.removeSlide(0);
+          },
+          slideChange: async function () {
+            const totalSlides = this.slides.length;
+            const currentIndex = this.realIndex + 1;
+
+            // 마지막 슬라이드에 도달했을 때
+            if (currentIndex >= totalSlides - 10) {
+              try {
+                const url = lastId
+                  ? `/loan-inquiry/realtime?lastId=${lastId}&size=10`
+                  : `/loan-inquiry/realtime?size=10`;
+
+                const response = await fetch(url);
+
+                const data = await response.json();
+
+                if (data.length === 0) {
+                  lastId = null;
+                  return;
+                }
+
+                // 마지막 데이터의 id 갱신
+                lastId = data[data.length - 1].id;
+
+                // 새 슬라이드 추가
+                const newSlides = data.map((item) => {
+                  return `
+                <li class="swiper-slide">
+                  <a href="/realtime/real_board/${item.id}">
+                    <div class="box">
+                      <dl>
+                        <dt>${item.title}</dt>
+                        <dd>
+                          <ul>
+                            <li>${item.createdAt}</li>
+                            <li>${item.distanceToNow}</li>
+                          </ul>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div class="details">
+                      <b>
+                        ${item.regionKind?.name}<br />
+                        ${item.amount}만원
+                      </b>
+                    </div>
+                  </a>
+                </li>
+              `;
+                });
+
+                verticalSwiper.appendSlide(newSlides);
+              } catch (error) {
+                console.error('데이터 로딩 실패', error);
+              }
+            }
+          },
+        },
+      });
+    </script>
+
+    <script>
+      // jumboSwiper
+      var jumboSwiper = new Swiper('.jumbo-slider', {
+        slidesPerView: 'auto',
+        spaceBetween: 8,
+        loop: true,
+        loopAdditionalSlides: 1,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          1024: {
+            spaceBetween: 10,
+          },
+        },
+      });
+
+      (function ($) {
+        // modal-1 모달 닫기
+        $(document).on('click', '.modal-1 .modal-close', function () {
+          $(this).parents('.modal-1').hide();
+        });
+
+        // modal-2 모달 닫기
+        $(document).on('click', '.modal-2 .modal-close', function () {
+          $(this).parents('.modal-2').hide();
+        });
+
+        // modal-1 오늘 하루 안보기
+        $(document).on('click', '.modal-1 .btn-today', function () {
+          const expireTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 현재 시간 + 24시간
+          localStorage.setItem('hide-modal-1', expireTime);
+          $(this).parents('.modal-1').hide();
+        });
+
+        // modal-2 오늘 하루 안보기
+        $(document).on('click', '.modal-2 .btn-today', function () {
+          const expireTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 현재 시간 + 24시간
+          localStorage.setItem('hide-modal-2', expireTime);
+          $(this).parents('.modal-2').hide();
+        });
+
+        // 페이지 로드시 모달 체크
+        $(document).ready(function () {
+          const now = new Date().getTime();
+          const hideModal1 = localStorage.getItem('hide-modal-1');
+          const hideModal2 = localStorage.getItem('hide-modal-2');
+
+          if (!hideModal1 || now > hideModal1) {
+            // modal이 보여야 할 경우
+            $('.modal-1').show();
+          } else {
+            // modal 숨김
+            $('.modal-1').hide();
+          }
+
+          if (!hideModal2 || now > hideModal2) {
+            // modal이 보여야 할 경우
+            $('.modal-2').show();
+          } else {
+            // modal 숨김
+            $('.modal-2').hide();
+          }
+        });
+      })(jQuery);
+    </script>
+  </body>
+</html>

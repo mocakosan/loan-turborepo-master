@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/community.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <div class="global-search">
+        <div class="container">
+          <div class="search-form">
+            <small>전국 최다 대출업체 등록,</small>
+            <h3>나에게 딱 맞는 대출업체 찾기</h3>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="검색어를 입력해 주세요"
+              />
+              <button type="button" class="btn-search">
+                <img src="/assets/images/btn_global_search.png" alt="" />
+              </button>
+            </div>
+            <div class="info">
+              <b>Today</b>
+              <ul>
+                <li>
+                  <dl>
+                    <dt>오늘 방문자</dt>
+                    <dd>1,871</dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt>누적 방문자</dt>
+                    <dd>354,664</dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt>실시간 대출문의</dt>
+                    <dd>2,310</dd>
+                  </dl>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sub-layout -->
+      <section class="sub-layout">
+        <div class="container">
+          <nav class="lnb">
+            <div class="lnb-header">
+              <small>대출업체가 모두 한 곳에, 추천대출!</small>
+              <strong>커뮤니티</strong>
+            </div>
+            <div class="lnb-body">
+              <ul>
+                <li><a href="/community/financial_news">금융권소식</a></li>
+                <li><a href="/community/loan_news">대부업소식</a></li>
+                <li class="active">
+                  <a href="/community/qna_list">질문과답변</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="sub-content">
+            <article class="board-view">
+              <div class="article-header">
+                <h3>질문과답변</h3>
+              </div>
+              <div class="article-content">
+                <!-- board-view -->
+                <div class="board-view-wrap">
+                  <div class="subject">
+                    <strong>질문과 답변 게시판 입니다.</strong>
+                  </div>
+                  <div class="info">
+                    <ul>
+                      <li>
+                        <dl>
+                          <dt>작성일자</dt>
+                          <dd><%= qna.createdAt %></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>조회수</dt>
+                          <dd><%= qna.hits %></dd>
+                        </dl>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="usr-content"><%- qna.content %></div>
+                  <div class="answer">
+                    <dl>
+                      <dt>추천대출 답변</dt>
+                      <dd><%- qna.reply %></dd>
+                    </dl>
+                  </div>
+                </div>
+                <div class="btn-area">
+                  <a href="/community/qna_list" class="btn-board">목록</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+  </body>
+</html>

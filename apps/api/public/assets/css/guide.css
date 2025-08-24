@@ -1,0 +1,292 @@
+@import "//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, etails, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button, hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-family: inherit;
+}
+
+main, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, hr {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  position: relative;
+  min-width: 360px;
+  width: 100%;
+  font-size: 13px;
+  color: #333;
+  line-height: 1;
+  font-weight: 400;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  word-break: keep-all;
+  box-sizing: border-box;
+  padding-top: 140px;
+}
+body *, body *::before, body *::after {
+  box-sizing: border-box;
+}
+@media (max-width: 1024px) {
+  body {
+    padding-top: 136px;
+  }
+}
+
+input, select, textarea {
+  font-family: inherit;
+  outline: none;
+  resize: none;
+}
+
+a, button {
+  color: #333;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  background: none;
+}
+a:hover, button:hover {
+  color: #333;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: 1270px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  display: block;
+  width: 100%;
+  padding: 0 50px;
+}
+@media (max-width: 1024px) {
+  .container-fluid {
+    padding: 0 20px;
+  }
+}
+
+/* sub-layout */
+.sub-layout {
+  margin-top: 40px;
+  padding-bottom: 100px;
+}
+.sub-layout .article-header {
+  padding-bottom: 20px;
+}
+.sub-layout .article-header h3 {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -0.41px;
+}
+.sub-layout .article-header p {
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  letter-spacing: -0.9px;
+}
+.sub-layout .pagination {
+  margin-top: 40px;
+}
+@media (max-width: 1024px) {
+  .sub-layout {
+    margin-top: 0;
+    padding-bottom: 20px;
+  }
+  .sub-layout .article-header {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  .sub-layout .article-header h3 {
+    font-size: 20px;
+  }
+  .sub-layout .container .sub-content {
+    margin-top: 30px;
+  }
+}
+
+/* global-search */
+@media (max-width: 1024px) {
+  .global-search {
+    display: none;
+  }
+}
+
+/* customer-guide */
+.customer-guide .sub-content .title-area {
+  display: none;
+}
+.customer-guide .sub-content article {
+  text-align: center;
+}
+.customer-guide .sub-content article .article-header {
+  padding-bottom: 30px;
+}
+.customer-guide .sub-content article .article-header h3 {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+}
+.customer-guide .sub-content article .article-header h3 span {
+  color: #FFA015;
+}
+.customer-guide .sub-content article .article-content {
+  padding: 40px 20px;
+  background-color: #F5F7FA;
+}
+.customer-guide .sub-content article .article-content p {
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+}
+.customer-guide .sub-content article .article-content p b {
+  font-weight: bold;
+}
+.customer-guide .sub-content article .article-content > span {
+  display: block;
+  color: #A1A1A1;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 30px;
+}
+.customer-guide .sub-content article ~ article {
+  margin-top: 60px;
+}
+.customer-guide .sub-content .dott-list {
+  margin-top: 30px;
+}
+.customer-guide .sub-content .dott-list li {
+  position: relative;
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  padding-left: 10px;
+}
+.customer-guide .sub-content .dott-list li b {
+  font-weight: bold;
+  color: #FFA015;
+}
+.customer-guide .sub-content .dott-list li:before {
+  position: absolute;
+  top: 9px;
+  left: 0;
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #333;
+}
+.customer-guide .sub-content .btn-area {
+  text-align: center;
+  font-size: 0;
+  max-width: 816px;
+  margin: 50px auto 0;
+}
+.customer-guide .sub-content .btn-area > a {
+  display: inline-block;
+  vertical-align: top;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.44px;
+  color: #fff;
+  width: calc(50% - 8px);
+  line-height: 52px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  margin-right: 16px;
+  background-color: #FFA015;
+  border-radius: 50px;
+}
+.customer-guide .sub-content .btn-area > a i {
+  display: inline-block;
+  vertical-align: top;
+  width: 28px;
+  height: 52px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 28px auto;
+}
+.customer-guide .sub-content .btn-area > a:hover {
+  opacity: 0.7;
+}
+.customer-guide .sub-content .btn-area > a:last-child {
+  margin-right: 0;
+}
+.customer-guide .sub-content .btn-area > a.btn-tel i {
+  background-image: url(/assets/images/sub/ico_tel_white.png);
+}
+.customer-guide .sub-content .btn-area > a.btn-mail i {
+  background-image: url(/assets/images/sub/ico_mail.png);
+}
+@media (max-width: 1024px) {
+  .customer-guide .sub-content .title-area {
+    display: block;
+    padding-bottom: 50px;
+    text-align: center;
+  }
+  .customer-guide .sub-content .title-area strong {
+    display: block;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .customer-guide .sub-content .title-area small {
+    display: block;
+    color: #888;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 10px;
+  }
+  .customer-guide .sub-content article .article-content {
+    padding: 25px 15px;
+  }
+  .customer-guide .sub-content article .article-content p {
+    font-size: 14px;
+  }
+  .customer-guide .sub-content article .article-content span {
+    font-size: 12px;
+  }
+  .customer-guide .sub-content .btn-area {
+    margin-top: 35px;
+  }
+  .customer-guide .sub-content .btn-area > a {
+    width: 100%;
+  }
+  .customer-guide .sub-content .btn-area > a ~ a {
+    margin-top: 16px;
+  }
+}
+
+/*# sourceMappingURL=guide.css.map */

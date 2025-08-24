@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/member.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- login -->
+      <section class="login">
+        <div class="container">
+          <div class="section-header">
+            <h3>로그인</h3>
+          </div>
+          <div class="section-content">
+            <div class="write-area">
+              <div class="login-form">
+                <div class="auto-check">
+                  <div class="check-area2">
+                    <input type="checkbox" id="login-auto" />
+                    <label for="login-auto"
+                      ><span class="icon"></span> 자동 로그인</label
+                    >
+                  </div>
+                </div>
+                <ul>
+                  <li>
+                    <dl>
+                      <dt>아이디</dt>
+                      <dd>
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            name="identity"
+                            class="form-control"
+                            placeholder="아이디"
+                          />
+                        </div>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl>
+                      <dt>비밀번호</dt>
+                      <dd>
+                        <div class="form-group">
+                          <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="비밀번호"
+                          />
+                        </div>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <div class="btn-area">
+                  <button type="button" class="btn-login" id="loginButton">
+                    로그인
+                  </button>
+                  <a href="#member-find" class="btn-modal btn-white"
+                    >아이디/비밀번호 찾기</a
+                  >
+                  <a href="/member/join" class="btn-white">회원가입</a>
+                </div>
+              </div>
+              <div class="join-area">
+                <h3><span>추천대출</span> 회원이 아니신가요?</h3>
+                <p>
+                  추천대출에서 저렴한 비용으로 엄청난 광고 효과를 누릴 수
+                  있습니다.<br />
+                  달라지는 콜 수로 광고 효과를 직접 경험해 보세요!
+                </p>
+                <div class="btn-area">
+                  <a href="/member/join" class="btn-join">추천대출 회원가입</a>
+                </div>
+              </div>
+            </div>
+            <div class="banner-list">
+              <div class="join-area">
+                <dl>
+                  <dt>아직도 추천대출 회원이 아니신가요?</dt>
+                  <dd>
+                    <a href="/member/join" class="btn-join"
+                      >추천대출 회원가입</a
+                    >
+                  </dd>
+                </dl>
+              </div>
+              <div class="usr-center">
+                <div>
+                  <p>기타 궁금하신 사항은 고객센터로 문의바랍니다.</p>
+                  <dl>
+                    <dt>대표전화</dt>
+                    <dd><a href="tel:01065027958">010-6502-7958</a></dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- modal-pop -->
+    <div class="modal-backdrop"></div>
+    <div class="modal-pop">
+      <div class="modal find-pop" id="member-find">
+        <div class="modal-header">
+          <h3>회원정보 찾기</h3>
+          <button type="button" class="btn-modal-close">
+            <img src="/assets/images/ico_modal_close.png" alt="" />
+          </button>
+        </div>
+        <div class="modal-content">
+          <p id="modalDescription">
+            회원가입 시 등록하신 휴대폰 번호를 입력해주세요.
+          </p>
+          <form id="findForm" class="find-form">
+            <div class="write-form">
+              <ul id="newPasswordUl" style="display: none">
+                <li>
+                  <dl>
+                    <dt class="essential">비밀번호</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="password"
+                          class="form-control"
+                          placeholder="비밀번호"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">비밀번호 확인</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="passwordConfirm"
+                          class="form-control"
+                          placeholder="비밀번호 확인"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+              </ul>
+
+              <ul id="phoneNumberAuthUl">
+                <li>
+                  <dl>
+                    <dd>
+                      <div class="form-group type-2">
+                        <input
+                          type="text"
+                          name="phoneNumber"
+                          class="form-control"
+                          placeholder="예시) 010-0000-0000"
+                        />
+                        <button class="btn-find" id="verifyPhoneButton">
+                          인증번호 발송
+                        </button>
+                      </div>
+
+                      <div
+                        class="form-group type-2"
+                        id="verificationCodeGroup"
+                        style="display: none"
+                      >
+                        <input
+                          type="text"
+                          name="verificationCode"
+                          class="form-control"
+                          placeholder="인증번호 입력"
+                        />
+                        <button class="btn-find" id="confirmCodeButton">
+                          번호확인
+                        </button>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+              </ul>
+            </div>
+
+            <div class="btn-area">
+              <button
+                type="button"
+                class="btn-submit"
+                id="changePasswordButton"
+                style="display: none"
+              >
+                비밀번호 변경
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ############################## 메세지 팝업 활성화시 show 추가 ############################## -->
+      <div class="modal msg-pop">
+        <div class="msg-content">
+          <p>회원님의 이메일로 아이디 비밀번호를 발송했습니다.</p>
+          <div class="btn-area">
+            <button type="button" class="btn-default btn-modal-close">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+
+    <script>
+      const form = document.getElementById('findForm');
+
+      // 회원정보 찾기 > 인증번호 발송 버튼 이벤트
+      const verifyPhoneButton = document.getElementById('verifyPhoneButton');
+      verifyPhoneButton.addEventListener('click', function (e) {
+        e.preventDefault(); // 기본 제출 막기 (페이지 이동 막음)
+
+        const formData = new FormData(form);
+
+        const phoneNumber = formData.get('phoneNumber');
+
+        // 휴대폰 번호 유효성 검사 (010-XXXX-XXXX 또는 010XXXXXXXX 형식)
+        const phoneRegex = /^(010-\d{4}-\d{4}|010\d{8})$/;
+        if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
+          return alert(
+            '올바른 휴대폰 번호를 입력해주세요. (예: 010-1234-5678 또는 01012345678)',
+          );
+        }
+
+        fetch('/enterprisers/new-password/send-verification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ phoneNumber: phoneNumber.replace(/\D/g, '') }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            document.getElementById('verificationCodeGroup').style.display =
+              'block';
+
+            alert('인증번호가 발송되었습니다.');
+          })
+          .catch((error) => {
+            console.error('에러 발생:', error);
+            alert(error.message || '인증번호 발송에 실패했습니다.');
+          });
+      });
+
+      // 번호확인 버튼 이벤트
+      const confirmCodeButton = document.getElementById('confirmCodeButton');
+      confirmCodeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const phoneNumber = formData.get('phoneNumber');
+        const verificationCode = formData.get('verificationCode');
+
+        if (!phoneNumber.length) {
+          return alert('전화번호를 입력해주세요.');
+        }
+
+        if (!verificationCode.length) {
+          return alert('인증번호를 입력해주세요.');
+        }
+
+        fetch('/enterprisers/new-password/verify-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phoneNumber: phoneNumber.replace(/\D/g, ''),
+            verificationCode,
+          }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            document.getElementById('phoneNumberAuthUl').style.display = 'none';
+            document.getElementById('newPasswordUl').style.display = 'block';
+            document.getElementById('changePasswordButton').style.display =
+              'inline-block';
+            document.getElementById('modalDescription').textContent =
+              `인증이 완료되었습니다.
+새로운 비밀번호를 입력해주세요.
+`;
+
+            alert('인증이 완료되었습니다.');
+          })
+          .catch((error) => {
+            alert(error.message || '인증번호가 올바르지 않습니다.');
+          });
+      });
+
+      // 새 비밀번호 확인 클릭 이벤트
+      const changePasswordButton = document.getElementById(
+        'changePasswordButton',
+      );
+      changePasswordButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const phoneNumber = formData.get('phoneNumber');
+        const verificationCode = formData.get('verificationCode');
+        const password = formData.get('password');
+        const passwordConfirm = formData.get('passwordConfirm');
+
+        if (!phoneNumber.length) {
+          return alert('전화번호를 입력해주세요.');
+        }
+
+        if (!verificationCode.length) {
+          return alert('인증번호를 입력해주세요.');
+        }
+
+        if (!password.length) {
+          return alert('비밀번호를 입력해주세요.');
+        }
+
+        if (password !== passwordConfirm) {
+          return alert('비밀번호 확인이 올바르지 않습니다.');
+        }
+
+        fetch('/enterprisers/new-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phoneNumber: phoneNumber.replace(/\D/g, ''),
+            verificationCode,
+            password,
+          }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            console.info('서버 응답:', data);
+            form.reset();
+
+            document.querySelector('.modal-backdrop').classList.remove('show');
+            document.querySelector('.modal.find-pop').classList.remove('show');
+
+            alert(data?.message);
+          })
+          .catch((error) => {
+            alert(error?.message || '비밀번호 변경을 실패했습니다.');
+          });
+      });
+
+      // 로그인 버튼 클릭 이벤트
+      const loginButton = document.getElementById('loginButton');
+      loginButton.addEventListener('click', function (e) {
+        e.preventDefault(); // 기본 제출 막기 (페이지 이동 막음)
+
+        const identity = document.querySelector('input[name="identity"]').value;
+        const password = document.querySelector('input[name="password"]').value;
+
+        if (!identity.length) {
+          return alert('아이디를 입력해주세요.');
+        }
+
+        if (!password.length) {
+          return alert('비밀번호를 입력해주세요.');
+        }
+
+        fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            identity,
+            password,
+          }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 201) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then(() => {
+            alert('로그인이 완료되었습니다.');
+
+            window.location.href = '/';
+          })
+          .catch((error) => {
+            console.error(error);
+            alert(error?.message || '아이디와 비밀번호를 확인해주세요.');
+          });
+      });
+    </script>
+  </body>
+</html>

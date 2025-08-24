@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/guide.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("../form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- enterprise-guide -->
+      <section class="enterprise-guide">
+        <div class="container">
+          <div class="section-header">
+            <h3>광고문의</h3>
+            <p>계좌번호 <b>국민은행 945802-00-344388</b> 추천대출 대부중개업</p>
+          </div>
+          <form id="guideForm" class="section-content">
+            <div class="selected">
+              <ul>
+                <li>
+                  <a href="javascript:;" class="box active">
+                    <span class="checkbox"></span>
+                    <dl>
+                      <dt>
+                        <b>모두 광고( 메인 + 전지역 + 전상품 )</b>
+                        <span><b>2,000,000</b>원 ( 한달 기준 )</span>
+                      </dt>
+                      <dd>
+                        <ul>
+                          <li><b>광고 위치</b> PC/모바일</li>
+                          <li>
+                            <b>상품 설명</b> 메인페이지, 지역별 업체 상단,
+                            상품별 업체 상단
+                          </li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:;" class="box">
+                    <span class="checkbox"></span>
+                    <dl>
+                      <dt>
+                        <b>메인</b>
+                        <span><b>1,300,000</b>원 ( 한달 기준 )</span>
+                      </dt>
+                      <dd>
+                        <ul>
+                          <li><b>광고 위치</b> PC/모바일</li>
+                          <li>
+                            <b>상품 설명</b> PC와 모바일 홈페이지 접속시 첫화면
+                            중앙에 노출되는 상품으로서 방문자의 클릭률이 높은
+                            위치
+                          </li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:;" class="box">
+                    <span class="checkbox"></span>
+                    <dl>
+                      <dt>
+                        <b>실시간대출문의 업체등록 횟수</b>
+                        <span><b>200,000</b>원 ( 한달 기준 200회 )</span>
+                      </dt>
+                      <dd>
+                        <ul>
+                          <li><b>광고 위치</b> PC/모바일</li>
+                          <li>
+                            <b>상품 설명</b> 일일 사용횟수 제한 없음. 광고연장
+                            시 남은 이용권은 이월되며, 미연장시 광고 종료와 함께
+                            소멸됩니다.
+                          </li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </a>
+                </li>
+                <li>
+                  <div class="box">
+                    <strong>
+                      광고비 환불은 남은 이용 기간(광고기간)의 비율로 환산한
+                      금액에서,<br />
+                      20% 공제 후 환불됩니다.<br /><br />
+                      단순 변심 또는 대부증 휴 / 폐업 등으로 인한
+                      <span>환불은 불가</span>하신 점 양해부탁드립니다.<br /><br />
+                      <span
+                        >세금계산서 / 현금영수증 발행 원하시는 경우 입금 전,<br />
+                        고객센터로 발급 요청 부탁드립니다. (부가세 10% 별도
+                        부가)<br /><br
+                      /></span>
+                      * 신고기한이 지난 경우 발급 불가한 점 양해 부탁드립니다.
+                    </strong>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-area">
+              <div>
+                <button type="submit" class="btn btn-inquiry">문의하기</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+
+    <script>
+      const form = document.getElementById('guideForm');
+
+      // 문의하기 버튼 클릭 이벤트
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // 기본 제출 막기 (페이지 이동 막음)
+
+        if (!'<%= user %>') {
+          return alert('회원만 문의가 가능합니다.');
+        }
+
+        const selectedBox = document.querySelector('.box.active');
+
+        if (!selectedBox) {
+          return alert('광고를 선택해 주세요.');
+        }
+
+        const title = selectedBox.querySelector('dt b').innerText;
+
+        const body = {
+          title,
+        };
+
+        fetch('/service/advertising_inquiry', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 201) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            console.info('서버 응답:', data);
+
+            alert('문의하기에 성공했습니다. 연락을 기다려주세요.');
+          })
+          .catch((error) => {
+            console.error('에러 발생:', error);
+            alert(error?.message || '문의하기를 실패하였습니다.');
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/member.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("../form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- sub-layout -->
+      <section class="sub-layout mypage">
+        <div class="container">
+          <nav class="lnb">
+            <div class="lnb-header">
+              <small>대출업체가 모두 한 곳에, 추천대출!</small>
+              <strong>마이페이지</strong>
+            </div>
+            <div class="lnb-body">
+              <ul>
+                <li><a href="/member/mypage3">광고</a></li>
+                <li class="active">
+                  <a href="/member/mypage">계정설정</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="sub-content">
+            <div class="title-area">
+              <h3>마이페이지</h3>
+            </div>
+            <article class="modify-form">
+              <div class="article-content">
+                <ul>
+                  <li>
+                    <dl>
+                      <dt>아이디</dt>
+                      <dd>
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= user.identity %>"
+                          />
+                          <button type="button" class="btn-modify">저장</button>
+                        </div>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl>
+                      <dt>연락처</dt>
+                      <dd>
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="<%= user.phoneNumber %>"
+                          />
+                          <button type="button" class="btn-modify">저장</button>
+                        </div>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl>
+                      <dt>비밀번호</dt>
+                      <dd>
+                        <div class="form-group">
+                          <input type="password" class="form-control" />
+                          <button type="button" class="btn-modify">저장</button>
+                        </div>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li class="disabled">
+                    <dl>
+                      <dt>비밀번호 변경</dt>
+                      <dd>
+                        <div class="form-group">
+                          <input
+                            type="password"
+                            class="form-control"
+                            disabled
+                          />
+                          <button type="button" class="btn-modify" disabled>
+                            저장
+                          </button>
+                        </div>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 아이디 저장 버튼
+        document
+          .querySelectorAll('.btn-modify')[0]
+          .addEventListener('click', async (e) => {
+            const identity = e.target.previousElementSibling.value;
+
+            const res = await fetch('/enterprisers/identity', {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ identity }),
+            });
+
+            const data = await res.json();
+
+            alert(data.message);
+
+            if (res.status === 200) {
+              window.location.href = '/member/login';
+            }
+          });
+
+        // 연락처 저장 버튼
+        document
+          .querySelectorAll('.btn-modify')[1]
+          .addEventListener('click', async (e) => {
+            const phoneNumber = e.target.previousElementSibling.value;
+
+            const res = await fetch('/enterprisers/phoneNumber', {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ phoneNumber }),
+            });
+            const data = await res.json();
+            alert(data.message);
+          });
+
+        // 비밀번호 확인 버튼
+        document
+          .querySelectorAll('.btn-modify')[2]
+          .addEventListener('click', async (e) => {
+            const password = e.target.previousElementSibling.value;
+
+            const res = await fetch('/enterprisers/check-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ password }),
+            });
+
+            const data = await res.json();
+
+            if (res.status !== 200) {
+              return alert('현재 비밀번호가 일치하지 않습니다.');
+            }
+
+            alert('비밀번호 확인 완료. 새 비밀번호를 입력하세요.');
+            const pwChangeSection =
+              document.querySelectorAll('.modify-form li')[3];
+            pwChangeSection.classList.remove('disabled');
+            pwChangeSection.querySelector('input').disabled = false;
+            pwChangeSection.querySelector('button').disabled = false;
+          });
+
+        // 새 비밀번호 저장 버튼
+        document
+          .querySelectorAll('.btn-modify')[3]
+          .addEventListener('click', async (e) => {
+            const password = e.target.previousElementSibling.value;
+
+            const res = await fetch('/enterprisers/password', {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ password }),
+            });
+
+            const data = await res.json();
+
+            alert(data.message);
+
+            if (res.status === 200) {
+              location.reload();
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

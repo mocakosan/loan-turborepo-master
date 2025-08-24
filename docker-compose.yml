@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  api-app:
+    build:
+      context: . # 도커파일 있는 위치 기준 경로
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "4000:3000" # 호스트 4000 -> 컨테이너 3000 매핑
+    restart: always # 컨테이너가 죽으면 자동 재시작
+    env_file:
+      - apps/api/.env.production
+
+  admin-app:
+    build:
+      context: . # 도커파일 있는 위치 기준 경로
+      dockerfile: apps/admin/Dockerfile
+    ports:
+      - "4001:4001" # 호스트 4001 -> 컨테이너 4001 매핑
+    restart: always # 컨테이너가 죽으면 자동 재시작
+    env_file:
+      - apps/admin/.env.production

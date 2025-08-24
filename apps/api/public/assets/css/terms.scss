@@ -1,0 +1,42 @@
+@import 'common';
+
+/* temrs-wrapper */
+.temrs-wrapper {
+    padding: 45px 0;
+    .container {
+        .section-header {
+            border-bottom: 0;
+            h3 {
+                &:before {
+                    color: $kcolor;
+                    content: '[ ';
+                }
+                &:after {
+                    color: $kcolor;
+                    content: ' ]';
+                }
+            }
+        }
+        .section-content {
+            color: #333;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 21px;
+            letter-spacing: -0.41px;
+            b {
+                display: block;
+                font-size: 16px;
+                color: $kcolor;
+                font-weight: bold;
+            }
+            em {
+                display: block;
+                font-weight: bold;
+                font-style: normal;
+            }
+        }
+    }
+    @media(max-width: $md) {
+        padding: 30px 0;
+    }
+}

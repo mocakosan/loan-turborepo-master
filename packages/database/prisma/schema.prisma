@@ -1,0 +1,916 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// 회원
+model User {
+  /// ID
+  id String @id @default(cuid())
+
+  /// 이름
+  name String?
+
+  /// 이메일
+  email String @unique
+
+  /// 이메일 인증일
+  emailVerified DateTime? @map("email_verified")
+
+  /// 이미지
+  image String?
+
+  /// 계정
+  accounts Account[]
+
+  /// 세션
+  sessions Session[]
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Account {
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}
+
+// 사업자 상태
+enum EnterpriserStatus {
+  // 대기
+  WAIT
+
+  // 승인
+  APPROVE
+
+  // 거부
+  REJECT
+}
+
+/// 사업자
+model Enterpriser {
+  /// ID
+  id String @id @default(cuid())
+
+  /// No
+  no Int @unique @default(autoincrement())
+
+  /// 아이디
+  identity String @unique
+
+  /// 이름
+  name String
+
+  /// 비밀번호
+  password String
+
+  /// 이메일
+  email String @unique
+
+  /// 전화번호(대표자명의)
+  phoneNumber String @unique @map("phone_number")
+
+  /// 상호명(업체명)
+  companyName String @map("company_name")
+
+  /// 대부(중개)등록번호
+  registrationNumber String @map("registration_number")
+
+  /// 등록유효기간 시작일
+  registrationStartDate String @map("registration_start_date")
+
+  /// 등록유효기간 종료일
+  registrationEndDate String @map("registration_end_date")
+
+  /// 대출광고 전화번호
+  advertisingPhoneNumber String @map("advertising_phone_number")
+
+  /// 우편번호
+  zip String
+
+  /// 주소
+  address String
+
+  /// 상세주소
+  addressDetail String @map("address_detail")
+
+  /// 대부업 등록기관
+  registrationAuthority String @map("registration_authority")
+
+  /// 대부업 등록기관 전화번호
+  registrationAuthorityPhoneNumber String @map("registration_authority_phone_number")
+
+  /// 대부업 등록증
+  loanLicense String @map("loan_license")
+
+  /// 사업자 등록증
+  businessLicense String @map("business_license")
+
+  /// 대출문의 SMS 수신 여부
+  isReceiveSMS Boolean @map("is_receive_sms")
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 접속일
+  connectionDate DateTime? @map("connection_date")
+
+  /// 광고 문의
+  advertisingInquiries AdvertisingInquiry[]
+
+  /// 사업자 상태
+  enterpriserStatus EnterpriserStatus @default(WAIT) @map("enterpriser_status")
+
+  /// 대출문의
+  loanInquiries LoanInquiry[]
+
+  /// 최근 본 대부업체
+  recentLenderViews RecentLenderView[]
+
+  /// 대출문의 등록
+  loanInquiryRegistrations LoanInquiryRegistration[]
+
+  @@map("enterprisers")
+}
+
+/// 휴대폰 인증
+model Verification {
+  phoneNumber String   @id @unique @map("phone_number")
+  code        String
+  expiresAt   DateTime @map("expires_at")
+
+  @@map("verifications")
+}
+
+/// 관리자
+model Admin {
+  /// ID
+  id String @id @default(cuid())
+
+  /// 이메일
+  email String @unique
+
+  /// 비밀번호
+  password String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 접속일
+  connectionDate DateTime? @map("connection_date")
+
+  @@map("admins")
+}
+
+/// 추천 대부업체
+model RecommendedLender {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 첫번째 타이틀
+  title1 String
+
+  /// 두번째 타이틀
+  title2 String
+
+  /// 내용
+  content String @db.Text
+
+  /// 대부업체 이름
+  lenderName String @map("lender_name")
+
+  /// 번호
+  phoneNumber String @map("phone_number")
+
+  /// 링크
+  link String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 대부업체 ID
+  lenderId Int? @unique @map("lender_id")
+
+  /// 대부업체
+  lender Lender? @relation(fields: [lenderId], references: [id])
+
+  @@map("recommended_lenders")
+}
+
+/// 상위 메인광고
+model TopMainAdvertising {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 대부업체 이름
+  lenderName String @map("lender_name")
+
+  /// 첫번째 타이틀
+  title1 String
+
+  /// 두번째 타이틀
+  title2 String
+
+  /// 내용
+  content String @db.Text
+
+  /// 번호
+  phoneNumber String @map("phone_number")
+
+  /// 링크
+  link String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("top_main_advertisings")
+}
+
+/// 지역 종류
+model RegionKind {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 이름
+  name String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 대부업체
+  lenders Lender[]
+
+  /// 대출문의
+  loanInquiries LoanInquiry[]
+
+  @@map("region_kinds")
+}
+
+/// 대출 종류
+model LoanKind {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 이름
+  name String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 대부업체
+  lenders Lender[]
+
+  /// 대출문의
+  loanInquiries LoanInquiry[]
+
+  @@map("loan_kinds")
+}
+
+/// 대부업체
+model Lender {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 배경 이미지
+  backgroundImage String @default("") @map("background_image")
+
+  /// 첫번째 타이틀
+  title1 String
+
+  /// 두번째 타이틀
+  title2 String
+
+  /// 대부업체 이름
+  lenderName String @map("lender_name")
+
+  /// 내용
+  content String @db.Text
+
+  /// 번호
+  phoneNumber String @map("phone_number")
+
+  /// 메인 광고 노출여부
+  isVisibleMain Boolean @default(false) @map("is_visible_main")
+
+  /// 지역별 광고 노출여부
+  isVisibleArea Boolean @default(false) @map("is_visible_area")
+
+  /// 상품별 광고 노출여부
+  isVisibleLoan Boolean @default(false) @map("is_visible_loan")
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 지역 종류
+  regionKinds RegionKind[]
+
+  /// 대출 종류
+  loanKinds LoanKind[]
+
+  /// 추천 대부업체
+  recommendedLender RecommendedLender?
+
+  /// 업체 정보
+  lenderInfo LenderInfo?
+
+  /// 최근 본 대부업체
+  recentLenderViews RecentLenderView[]
+
+  @@map("lenders")
+}
+
+/// 업체 정보
+model LenderInfo {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 타이틀
+  title String
+
+  /// 업체명
+  companyName String @map("company_name")
+
+  /// 중개등록번호
+  registrationNumber String @map("registration_number")
+
+  /// 연락처
+  phoneNumber String @map("phone_number")
+
+  /// 등록기관
+  registrationAuthority String @map("registration_authority")
+
+  /// 등록기관 전화번호
+  registrationAuthorityPhoneNumber String @map("registration_authority_phone_number")
+
+  /// 영업소
+  office String
+
+  /// 월금리
+  monthRate String @map("month_rate")
+
+  /// 대출한도
+  loanLimit String @map("loan_limit")
+
+  /// 추가비용
+  additionalCost String @map("additional_cost")
+
+  /// 상환방식
+  repaymentMethod String @map("repayment_method")
+
+  /// 연금리
+  yearRate String @map("year_rate")
+
+  /// 연체금리
+  overdueRate String @map("overdue_rate")
+
+  /// 조기상환수수료
+  earlyRepaymentFee String @map("early_repayment_fee")
+
+  /// 상환기간
+  repaymentPeriod String @map("repayment_period")
+
+  /// 부가설명
+  description String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 대부업체 ID
+  lenderId Int? @unique @map("lender_id")
+
+  /// 대부업체
+  lender Lender? @relation(fields: [lenderId], references: [id])
+
+  @@map("lender_infos")
+}
+
+/// 최근 본 대부업체
+model RecentLenderView {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 일자
+  viewedAt DateTime @default(now()) @map("viewed_at")
+
+  /// 사업자 ID
+  enterpriserId String @map("enterpriser_id")
+
+  /// 사업자
+  enterpriser Enterpriser @relation(fields: [enterpriserId], references: [id])
+
+  /// 대부업체 ID
+  lenderId Int @map("lender_id")
+
+  /// 대부업체
+  lender Lender @relation(fields: [lenderId], references: [id])
+
+  @@unique([enterpriserId, lenderId])
+  @@index([enterpriserId, viewedAt])
+  @@map("recent_lender_views")
+}
+
+/// 대출문의
+model LoanInquiry {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 이름
+  name String
+
+  /// 직업 여부
+  isJob Boolean @map("is_job")
+
+  /// 나이
+  age String
+
+  /// 성별
+  gender String
+
+  /// 희망 금액
+  amount String
+
+  /// 상담후 결정 여부
+  isAfterConsult Boolean @default(false) @map("is_after_consult")
+
+  /// 번호
+  phoneNumber String @map("phone_number")
+
+  /// 내용
+  content String @db.Text
+
+  /// 마케팅 수신동의 여부
+  isAgreeMarketing Boolean @default(false) @map("is_agree_marketing")
+
+  /// 조회수
+  hits Int @default(0)
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 지역 종류 ID
+  regionKindId Int @map("region_kind_id")
+
+  /// 지역 종류
+  regionKind RegionKind @relation(fields: [regionKindId], references: [id])
+
+  /// 대출 종류 ID
+  loanKindId Int? @map("loan_kind_id")
+
+  /// 대출 종류
+  loanKind LoanKind? @relation(fields: [loanKindId], references: [id])
+
+  /// 사업자
+  enterprisers Enterpriser[]
+
+  /// 대출문의 등록
+  loanInquiryRegistrations LoanInquiryRegistration[]
+
+  @@map("loan_inquiries")
+}
+
+/// 대출문의 등록
+model LoanInquiryRegistration {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 횟수
+  count Int @default(0)
+
+  /// 시작일
+  startedAt DateTime @map("started_at")
+
+  /// 종료일
+  endedAt DateTime @map("ended_at")
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 사업자 ID
+  enterpriserId String @map("enterpriser_id")
+
+  /// 사업자
+  enterpriser Enterpriser @relation(fields: [enterpriserId], references: [id])
+
+  /// 대출문의
+  loanInquiries LoanInquiry[]
+
+  @@map("loan_inquiry_registrations")
+}
+
+/// 금융권 소식
+model FinancialNews {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 링크
+  link String
+
+  /// 조회수
+  hits Int @default(0)
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("financial_news")
+}
+
+/// 대부업 소식
+model LoanNews {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 링크
+  link String
+
+  /// 조회수
+  hits Int @default(0)
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("loan_news")
+}
+
+/// 공지사항
+model Notice {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 내용
+  content String @db.Text
+
+  /// 조회수
+  hits Int @default(0)
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("notices")
+}
+
+/// 1:1문의 종류
+enum InquiryKind {
+  /// 제휴문의
+  PARTNERSHIP
+
+  /// 광고문의
+  ADVERTISING
+
+  /// 공지사항문의
+  NOTICE
+
+  /// 기타문의
+  OTHER
+
+  /// 건의사항
+  SUGGESTION
+
+  /// 신고하기
+  REPORT
+
+  /// 오류신고
+  ERROR
+
+  /// 실시간대출문의 글삭제
+  DELETE_LOAN_INQUIRY
+}
+
+/// 1:1문의
+model Inquiry {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 이름
+  name String
+
+  /// 1:1문의 종류
+  inquiryKind InquiryKind @map("inquiry_kind")
+
+  /// 번호
+  phoneNumber String @map("phone_number")
+
+  /// 내용
+  content String @db.Text
+
+  /// 답변
+  reply String? @db.Text
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("inquiries")
+}
+
+/// 질문과 답변
+model QnA {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 내용
+  content String @db.Text
+
+  /// 답변
+  reply String? @db.Text
+
+  /// 조회수
+  hits Int @default(0)
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("qnas")
+}
+
+/// 광고 안내
+model AdvertisingGuide {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 제목
+  title String
+
+  /// 금액
+  amount Int @default(0)
+
+  /// 기준
+  standard String @default("")
+
+  /// 광고 위치
+  position String
+
+  /// 설명
+  description String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 광고 문의
+  advertisingInquiries AdvertisingInquiry[]
+
+  @@map("advertising_guide")
+}
+
+/// 광고 문의 상태
+enum AdvertisingInquiryStatus {
+  /// 새로운 문의
+  NEW_INQUIRY
+
+  /// 입금대기
+  WAIT_DEPOSIT
+
+  /// 입금완료
+  COMPLETE_DEPOSIT
+
+  /// 업로드 완료
+  COMPLETE_UPLOAD
+}
+
+/// 광고 문의
+model AdvertisingInquiry {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 광고 문의 종류
+  advertisingInquiryKind String
+
+  /// 상태
+  status AdvertisingInquiryStatus @default(NEW_INQUIRY)
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// 사업자 ID
+  enterpriserId String
+
+  /// 사업자
+  enterpriser Enterpriser @relation(fields: [enterpriserId], references: [id])
+
+  /// 광고 안내 ID
+  advertisingGuideId Int?
+
+  /// 광고 안내
+  advertisingGuide AdvertisingGuide? @relation(fields: [advertisingGuideId], references: [id])
+
+  @@map("advertising_inquiries")
+}
+
+/// 스폰서 광고
+model SponsorAd {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 대부업체 이름
+  lenderName String @map("lender_name")
+
+  /// 첫번째 타이틀
+  title1 String
+
+  /// 두번째 타이틀
+  title2 String
+
+  /// 바로가기 링크
+  link String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("sponsor_ads")
+}
+
+/// 줄광고
+model LineAd {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 위치명
+  region String
+
+  /// 첫번째 타이틀
+  title1 String
+
+  /// 두번째 타이틀
+  title2 String
+
+  /// 대부업체 이름
+  lenderName String @map("lender_name")
+
+  /// 바로가기 링크
+  link String
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// 수정일
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("line_ads")
+}
+
+/// 방문자
+model Visitor {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// 방문일자
+  date DateTime @unique
+
+  /// 방문수
+  count Int @default(0)
+
+  @@map("visitors")
+}
+
+/// 누적 방문
+model TotalVisit {
+  /// ID
+  id Int @id
+
+  /// 누적 방문 수
+  count Int @default(0)
+
+  /// 자동설정
+  isAuto Boolean @default(true) @map("is_auto")
+
+  @@map("total_visits")
+}
+
+/// IP 로그
+model IpLog {
+  /// ID
+  id Int @id @default(autoincrement())
+
+  /// IP
+  ip String
+
+  /// 일자
+  date DateTime
+
+  /// 생성일
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([ip, date])
+  @@map("ip_logs")
+}
+
+/// 실시간 대출문의 수
+model LoanInquiryCount {
+  /// ID
+  id Int @id
+
+  /// 누적 방문 수
+  count Int @default(0)
+
+  @@map("loan_inquiry_counts")
+}

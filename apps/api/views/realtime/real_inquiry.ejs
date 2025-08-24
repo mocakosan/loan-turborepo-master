@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/realtime.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("../form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- real-inquiry -->
+      <section class="real-inquiry">
+        <div class="container">
+          <div class="section-header">
+            <h3>
+              <span>실시간</span> 대출문의 현황
+              <small
+                >각 지역을 클릭하시면 해당 지역에 등록된 문의를 볼 수
+                있습니다.</small
+              >
+            </h3>
+            <div class="btn-area">
+              <a href="/realtime/real_write" class="btn-write">글쓰기</a>
+            </div>
+          </div>
+          <div class="section-content">
+            <!-- area-list -->
+            <div class="area-list">
+              <ul>
+                <li class="<%= sido === '' ? 'active' : '' %>">
+                  <a href="?page=1&sido=&field=<%= field %>&search=<%= search %>">전국</a>
+                </li>
+
+                <% sidoList.forEach((item) => { %>
+                <li class="<%= item.id === Number(sido) ? 'active' : '' %>">
+                  <a href="?page=1&sido=<%= item.id %>&field=<%= field %>&search=<%= search %>"><%= item.name %></a>
+                </li>
+                <% }) %>
+              </ul>
+            </div>
+
+            <div class="btn-area">
+              <a href="/realtime/real_write" class="btn-write">글쓰기</a>
+            </div>
+
+            <!-- board-list -->
+            <div class="board-list">
+              <ul>
+                <li>
+                  <ul>
+                    <li>번호</li>
+                    <li>지역</li>
+                    <li>제목</li>
+                    <li>작성자</li>
+                    <li>작성일</li>
+                    <li>조회</li>
+                  </ul>
+                </li>
+
+                <% loanInquiries.forEach((item) => { %>
+                <li>
+                  <ul>
+                    <li class="num"><%= item.id %></li>
+                    <li class="area"><%= item.regionKind.name %></li>
+                    <li>
+                      <a href="/realtime/real_board/<%= item.id %>"
+                        ><%= item.title %>
+                        <!-- <i class="ico-new"></i> -->
+                      </a>
+                    </li>
+                    <li><%= item.name %></li>
+                    <li class="date"><%= item.createdAt %></li>
+                    <li class="hit"><%= item.hits %></li>
+                  </ul>
+                </li>
+                <% }) %>
+              </ul>
+            </div>
+            <!-- pagination -->
+            <nav class="pagination">
+              <ol>
+                <!-- 이전 페이지 버튼 -->
+                <% if (hasPrevPage) { %>
+                <li class="first">
+                  <a
+                    href="?page=<%= Number(startPage) %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <li class="prev">
+                  <a
+                    href="?page=<%= Number(page) - 1 %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <% } %>
+
+                <!-- 페이지 번호 목록 -->
+                <% pages.forEach(function(item) { %>
+                <% if (item === Number(page)) { %>
+                <li class="active"><a href="#"><%= item %></a></li>
+                <% } else { %>
+                <li>
+                  <a
+                    href="?page=<%= item %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                    ><%= item %></a
+                  >
+                </li>
+                <% } %>
+                <% }) %>
+
+                <!-- 다음 페이지 버튼 -->
+                <% if (hasNextPage) { %>
+                <li class="next">
+                  <a
+                    href="?page=<%= Number(page) + 1 %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <li class="last">
+                  <a
+                    href="?page=<%= Number(endPage) %>&sido=<%= sido %>&field=<%= field %>&search=<%= search %>"
+                  ></a>
+                </li>
+                <% }  %>
+              </ol>
+            </nav>
+
+            <!-- search-area2 -->
+            <div class="search-area2">
+              <form action="" method="GET" class="form-group">
+                <input type="hidden" name="page" value="<%= page %>" />
+                <input type="hidden" name="sido" value="<%= sido %>" />
+
+                <select class="form-control" name="field" id="field-select">
+                  <option value="phoneNumber" <%= field === 'phoneNumber' ? 'selected' : '' %>>연락처</option>
+                  <option value="name" <%= field === 'name' ? 'selected' : '' %>>이름</option>
+                  <option value="content" <%= field === 'content' ? 'selected' : '' %>>내용</option>
+                </select>
+                <input
+                  type="text"
+                  name="search"
+                  class="form-control"
+                  id="search-input"
+                  value="<%= search %>"
+                />
+                <button type="submit" class="btn-search">
+                  <img src="/assets/images/sub/ico_search.png" alt="" />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+    <script>
+      const fieldSelect = document.getElementById('field-select');
+      const searchInput = document.getElementById('search-input');
+
+      function handleChangeField(value) {
+        let placeholder = '';
+        if (value === 'phoneNumber') {
+          placeholder = '휴대폰번호 뒤 4자리';
+        } else if (value === 'name') {
+          placeholder = '이름';
+        } else if (value === 'content') {
+          placeholder = '내용';
+        }
+
+        searchInput.placeholder = placeholder;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        handleChangeField(fieldSelect.value);
+      });
+    
+      fieldSelect.addEventListener('change', (e) => {
+        handleChangeField(e.target.value);
+      });
+    </script>
+  </body>
+</html>

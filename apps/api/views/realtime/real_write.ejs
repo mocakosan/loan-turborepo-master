@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/realtime.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <%- include("../layout/mobile-nav") %>
+
+    <!-- content -->
+    <main id="content">
+      <!-- real-write -->
+      <section class="real-write">
+        <div class="container">
+          <div class="section-header">
+            <h3><span>실시간</span> 대출문의 현황</h3>
+          </div>
+          <form id="realWriteForm" class="section-content">
+            <!-- write-form -->
+            <div class="write-form">
+              <ul>
+                <li>
+                  <dl>
+                    <dt class="essential">제목</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="title"
+                          class="form-control"
+                          placeholder="제목"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">이름</dt>
+                    <dd>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="name"
+                          class="form-control"
+                          placeholder="이름"
+                        />
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">지역정보</dt>
+                    <dd>
+                      <div class="form-group select">
+                        <select name="sido" class="form-control">
+                          <option value="">지역선택</option>
+
+                          <% sidoList.forEach((item) => { %>
+                          <option value="<%= item.id %>">
+                            <%= item.name %>
+                          </option>
+                          <% }) %>
+                        </select>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">직업</dt>
+                    <dd>
+                      <ul class="radio-list">
+                        <li>
+                          <div class="radio-area">
+                            <input
+                              type="radio"
+                              name="isJob"
+                              id="radio-1"
+                              value="true"
+                              checked
+                            />
+                            <label for="radio-1"
+                              ><span class="icon"></span> 있음</label
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <div class="radio-area">
+                            <input
+                              type="radio"
+                              name="isJob"
+                              id="radio-2"
+                              value="false"
+                            />
+                            <label for="radio-2"
+                              ><span class="icon"></span> 없음</label
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">나이</dt>
+                    <dd>
+                      <div class="form-group age">
+                        <input
+                          type="text"
+                          name="age"
+                          class="form-control"
+                          placeholder=""
+                        />
+                        세
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">성별</dt>
+                    <dd>
+                      <ul class="radio-list">
+                        <li>
+                          <div class="radio-area">
+                            <input
+                              type="radio"
+                              name="gender"
+                              id="radio-3"
+                              value="남자"
+                              checked
+                            />
+                            <label for="radio-3"
+                              ><span class="icon"></span> 남자</label
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <div class="radio-area">
+                            <input
+                              type="radio"
+                              name="gender"
+                              id="radio-4"
+                              value="여자"
+                            />
+                            <label for="radio-4"
+                              ><span class="icon"></span> 여자</label
+                            >
+                          </div>
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">희망 금액</dt>
+                    <dd class="hope">
+                      <div class="form-group">
+                        <div class="radio-area">
+                          <input
+                            type="radio"
+                            id="radio-5"
+                            name="isAfterConsult"
+                            value="false"
+                            checked
+                          />
+                          <label for="radio-5"
+                            ><span class="icon"></span> 금액 입력</label
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          placeholder="0"
+                        />
+                      </div>
+                      <span>만원</span>
+                      <div class="radio-area">
+                        <input
+                          type="radio"
+                          name="isAfterConsult"
+                          id="radio-6"
+                          value="true"
+                        />
+                        <label for="radio-6"
+                          ><span class="icon"></span> 상담후 결정</label
+                        >
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">대출종류</dt>
+                    <dd>
+                      <div class="form-group select">
+                        <select name="category" class="form-control">
+                          <option value="">종류를 선택하세요</option>
+
+                          <% loanList.forEach((item) => { %>
+                          <option value="<%= item.id %>">
+                            <%= item.name %>
+                          </option>
+                          <% }) %>
+                        </select>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">휴대폰번호</dt>
+                    <dd class="phone">
+                      <ul>
+                        <li>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              name="phoneNumber1"
+                              class="form-control"
+                              placeholder="010"
+                            />
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              name="phoneNumber2"
+                              class="form-control"
+                              placeholder="0000"
+                            />
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              name="phoneNumber3"
+                              class="form-control"
+                              placeholder="0000"
+                            />
+                          </div>
+                        </li>
+                      </ul>
+                      <div class="btn-area">
+                        <button
+                          class="btn-certification"
+                          id="verifyPhoneButton"
+                        >
+                          인증번호 받기
+                        </button>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">인증번호</dt>
+                    <dd class="confirm">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="verificationCode"
+                          class="form-control"
+                          placeholder="인증번호 확인"
+                        />
+                      </div>
+                      <div class="btn-area">
+                        <button class="btn-confirm" id="confirmCodeButton">
+                          확인
+                        </button>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">문의내용</dt>
+                    <dd>
+                      <div class="form-group">
+                        <textarea
+                          class="form-control"
+                          name="content"
+                          placeholder="카톡 아이디, 연락처 등 기재시 운영방침에 따라 삭제됩니다.&#13;자신의 상황 등을 자세히 기재해 주시면 나에게 맞는 대출업체와 빠르고 쉽게 상담을 받아보실 수 있습니다.&#13;대출문의 외 문의 사항은 1:1문의 게시판을 이용바랍니다."
+                        ></textarea>
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt class="essential">개인정보수집 및 이용동의</dt>
+                    <dd>
+                      <div class="check-area">
+                        <input type="checkbox" id="check-agree" />
+                        <label for="check-agree"
+                          ><span class="icon"></span> 개인정보 이용 및 수집에
+                          동의합니다. <small>(필수)</small>
+                          <a href="#agree-pop" class="btn-modal">보기</a></label
+                        >
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+                <li>
+                  <dl>
+                    <dt>마케팅 수신동의</dt>
+                    <dd>
+                      <div class="check-area">
+                        <input type="checkbox" id="check-marketing" />
+                        <label for="check-marketing"
+                          ><span class="icon"></span> 마케팅 수신에 동의합니다.
+                          <small>(선택)</small>
+                          <a href="#marketing-pop" class="btn-modal"
+                            >보기</a
+                          ></label
+                        >
+                      </div>
+                    </dd>
+                  </dl>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-area">
+              <div>
+                <button type="button" class="btn btn-cancel" id="cancelButton">
+                  취소
+                </button>
+                <button type="submit" class="btn btn-submit">작성완료</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- modal-pop -->
+    <div class="modal-backdrop"></div>
+    <div class="modal-pop">
+      <div class="modal agree-pop" id="agree-pop">
+        <div class="modal-header">
+          <h3>개인정보 수집 및 이용</h3>
+          <button type="button" class="btn-modal-close">
+            <img src="/assets/images/ico_modal_close.png" alt="" />
+          </button>
+        </div>
+        <div class="modal-content agreement">
+          <ul>
+            <li>
+              ■ 수집하는 개인정보의 필수항목 휴대폰번호, 비밀번호, 지역, 나이,
+              직업(유/무), 성별, 대출희망금액, 대출상품종류(담보대출,신용대출),
+              문의내용, 쿠키, 접속IP 정보
+            </li>
+            <li>
+              ■ 개인정보의 수집 및 이용목적 이용자 요청 자료에 대한 무료
+              대출상담 서비스에 응대
+            </li>
+            <li>
+              ■ 책임사항 및 면책사항 작성 이후 진행과정에서 정보제공자(고객)와
+              정보이용자(대출업체)간의 발생되는 문제는 고객의 동의에 의해 진행된
+              것으로 모든 민형사상의 분쟁에서 추천대출는 어떠한 일체의 책임이
+              없습니다. 자세한 사항은 이용약관을 의거 처리됩니다.
+            </li>
+            <li>
+              ■ 개인정보의 보유 및 이용기간 원칙적으로 개인정보의 수집 및
+              이용목적이 달성되면 지체 없이 파기합니다.<br />
+              단, 상법/전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의
+              규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령에서 정한
+              일정한 기간 동안 개인정보를 보관합니다.
+            </li>
+          </ul>
+          <span class="attention">
+            *귀하는 위 개인정보의 수집·이용에 대한 동의를 거부할 수 있으며, 동의
+            후에도 언제든지 철회가능합니다.<br />
+            다만 위 개인정보의 수집·이용에 동의하지 않을 경우 서비스 제공이 되지
+            않는 등의 불이익을 받을 수 있습니다.
+          </span>
+        </div>
+      </div>
+      <div class="modal marketing-pop" id="marketing-pop">
+        <div class="modal-header">
+          <h3>마케팅 수신 동의</h3>
+          <button type="button" class="btn-modal-close">
+            <img src="/assets/images/ico_modal_close.png" alt="" />
+          </button>
+        </div>
+        <div class="modal-content agreement">
+          <ul>
+            <li>
+              ■ 목적 추천대출, 서비스에 대한 정보, 광고, 홍보, 이벤트 제공
+              (자세한 사항은 개인정보 처리방침 참조)
+            </li>
+            <li>
+              ■ 처리하는 개인정보 항목 휴대폰번호, 비밀번호, 지역, 나이,
+              직업(유/무), 성별, 대출희망금액, 대출상품종류(담보대출,신용대출),
+              문의내용, 쿠키, 접속 IP 정보
+            </li>
+            <li>
+              ■ 개인정보 보유 및 이용기간 정보 및 이벤트, 광고 목적의 개인정보
+              수집, 이용에 대한 동의 시부터 동의 철회 또는 글 삭제요청시(최대
+              2년간)
+            </li>
+          </ul>
+          <span class="attention">
+            *정보 및 이벤트 항목은 선택사항이므로 동의를 거부하는 경우에도
+            추천대출 서비스의 이용에는 영향이 없습니다. 또한 정보 및 이벤트 수신
+            동의는 고객 센터를 통해 언제든지 철회할 수 있습니다.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+
+    <script>
+      const form = document.getElementById('realWriteForm');
+
+      // 인증번호 받기 버튼 이벤트
+      const verifyPhoneButton = document.getElementById('verifyPhoneButton');
+      verifyPhoneButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const phoneNumber1 = formData.get('phoneNumber1');
+        const phoneNumber2 = formData.get('phoneNumber2');
+        const phoneNumber3 = formData.get('phoneNumber3');
+
+        const phoneNumber = `${phoneNumber1}${phoneNumber2}${phoneNumber3}`;
+
+        // 휴대폰 번호 유효성 검사 (010-XXXX-XXXX 또는 010XXXXXXXX 형식)
+        const phoneRegex = /^(010-\d{4}-\d{4}|010\d{8})$/;
+        if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
+          return alert('올바른 휴대폰 번호를 입력해주세요.');
+        }
+
+        fetch('/realtime/real_write/send-verification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phoneNumber: phoneNumber.replace(/\D/g, '') }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            alert('인증번호가 발송되었습니다.');
+          })
+          .catch((error) => {
+            alert(error.message || '인증번호 발송에 실패했습니다.');
+          });
+      });
+
+      let isPhoneVerified = false; // 인증 완료 상태 변수
+
+      // 번호확인 버튼 이벤트
+      const confirmCodeButton = document.getElementById('confirmCodeButton');
+      confirmCodeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const phoneNumber1 = formData.get('phoneNumber1');
+        const phoneNumber2 = formData.get('phoneNumber2');
+        const phoneNumber3 = formData.get('phoneNumber3');
+
+        const phoneNumber = `${phoneNumber1}${phoneNumber2}${phoneNumber3}`;
+        const verificationCode = formData.get('verificationCode');
+
+        if (!phoneNumber.length) {
+          return alert('전화번호를 입력해주세요.');
+        }
+
+        if (!verificationCode.length) {
+          return alert('인증번호를 입력해주세요.');
+        }
+
+        fetch('/realtime/real_write/verify-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phoneNumber: phoneNumber.replace(/\D/g, ''),
+            verificationCode,
+          }),
+        })
+          .then(async (response) => {
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw new Error(json.message);
+            }
+
+            return json;
+          })
+          .then((data) => {
+            isPhoneVerified = true; // 인증 완료
+            verifyPhoneButton.disabled = true; // 인증번호 받기 버튼 비활성화
+            confirmCodeButton.disabled = true;
+            document.querySelector('input[name="phoneNumber1"]').readOnly =
+              true;
+            document.querySelector('input[name="phoneNumber2"]').readOnly =
+              true;
+            document.querySelector('input[name="phoneNumber3"]').readOnly =
+              true;
+            document.querySelector('input[name="verificationCode"]').readOnly =
+              true;
+
+            alert('인증이 완료되었습니다.');
+          })
+          .catch((error) => {
+            alert(error.message || '인증번호가 올바르지 않습니다.');
+          });
+      });
+
+      // 취소 버튼 클릭 이벤트
+      const cancelButton = document.getElementById('cancelButton');
+      cancelButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.history.back();
+      });
+
+      // 작성완료 버튼 클릭 이벤트
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // 기본 제출 막기 (페이지 이동 막음)
+
+        const formData = new FormData(form);
+
+        const title = formData.get('title');
+        const name = formData.get('name');
+        const sido = formData.get('sido');
+        const isJob = formData.get('isJob');
+        const age = formData.get('age');
+        const gender = formData.get('gender');
+        const amount = formData.get('amount');
+        const isAfterConsult = formData.get('isAfterConsult');
+        const category = formData.get('category');
+        const phoneNumber1 = formData.get('phoneNumber1');
+        const phoneNumber2 = formData.get('phoneNumber2');
+        const phoneNumber3 = formData.get('phoneNumber3');
+        const content = formData.get('content');
+
+        const isAgreePersonalInfo = document.querySelector('#check-agree');
+        const isAgreeMarketing = document.querySelector('#check-marketing');
+
+        if (!title.length) {
+          return alert('제목을 입력해주세요.');
+        }
+
+        if (!name.length) {
+          return alert('이름을 입력해주세요.');
+        }
+
+        if (!sido.length) {
+          return alert('지역정보를 선택해주세요.');
+        }
+
+        if (!age.length) {
+          return alert('나이를 입력해주세요.');
+        }
+
+        if (isAfterConsult === 'false' && !amount.length) {
+          return alert('희망금액을 입력해주세요.');
+        }
+
+        if (!category.length) {
+          return alert('대출종류를 선택해주세요.');
+        }
+
+        if (
+          !phoneNumber1.length ||
+          !phoneNumber2.length ||
+          !phoneNumber3.length
+        ) {
+          return alert('휴대폰번호를 입력해주세요.');
+        }
+
+        if (!content.length) {
+          return alert('문의내용을 입력해주세요.');
+        }
+
+        if (!isAgreePersonalInfo.checked) {
+          return alert('개인정보수집 및 이용동의는 필수입니다.');
+        }
+
+        const body = {
+          title,
+          name,
+          sido: Number(sido),
+          isJob: isJob.toLowerCase() === 'true',
+          age,
+          gender,
+          amount,
+          isAfterConsult: isAfterConsult.toLowerCase() === 'true',
+          category: Number(category),
+          phoneNumber: `${phoneNumber1}-${phoneNumber2}-${phoneNumber3}`,
+          content,
+          isAgreeMarketing: isAgreeMarketing.checked,
+        };
+
+        fetch('/realtime/real_write', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+          .then((response) => response.json()) // 응답 JSON이라 가정
+          .then((data) => {
+            console.info('서버 응답:', data);
+            form.reset();
+            alert('작성을 완료했습니다.');
+
+            window.location.href = `/realtime/real_inquiry`;
+          })
+          .catch((error) => {
+            console.error('에러 발생:', error);
+            alert('작성 실패: ', error?.message);
+          });
+      });
+    </script>
+  </body>
+</html>

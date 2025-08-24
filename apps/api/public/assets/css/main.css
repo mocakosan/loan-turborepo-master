@@ -1,0 +1,1054 @@
+@import "//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, etails, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button, hr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-family: inherit;
+}
+
+main, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, hr {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  position: relative;
+  min-width: 360px;
+  width: 100%;
+  font-size: 13px;
+  color: #333;
+  line-height: 1;
+  font-weight: 400;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  word-break: keep-all;
+  box-sizing: border-box;
+  padding-top: 140px;
+}
+body *, body *::before, body *::after {
+  box-sizing: border-box;
+}
+@media (max-width: 1024px) {
+  body {
+    padding-top: 136px;
+  }
+}
+
+input, select, textarea {
+  font-family: inherit;
+  outline: none;
+  resize: none;
+}
+
+a, button {
+  color: #333;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  outline: none;
+  text-decoration: none;
+  background: none;
+}
+a:hover, button:hover {
+  color: #333;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: 1270px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  display: block;
+  width: 100%;
+  padding: 0 50px;
+}
+@media (max-width: 1024px) {
+  .container-fluid {
+    padding: 0 20px;
+  }
+}
+
+/* common */
+.title {
+  display: block;
+  color: #333;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: -0.44px;
+}
+.title span {
+  color: #FFA015;
+}
+@media (max-width: 1024px) {
+  .title {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+/* jumbotron */
+.jumbotron {
+  overflow: hidden;
+  padding-bottom: 45px;
+}
+.jumbotron .visible-sm {
+  display: none;
+}
+.jumbotron .section-header {
+  padding: 60px 0 15px;
+}
+.jumbotron .section-header .container {
+  position: relative;
+}
+.jumbotron .section-content {
+  display: flex;
+}
+.jumbotron .section-content .left-space {
+  display: flex;
+  flex: 1;
+  background-color: #fff;
+  z-index: 2;
+}
+.jumbotron .section-content .right-space {
+  display: flex;
+  flex: 1;
+}
+.jumbotron .section-content .container {
+  position: relative;
+  padding: 0;
+  max-width: 1240px;
+}
+.jumbotron .section-content .container > figure {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+.jumbotron .section-content .container > figure img {
+  max-width: 100%;
+}
+.jumbotron .section-content .container .jumbo-slider {
+  overflow: visible;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide {
+  width: 227px;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box {
+  position: relative;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box img {
+  max-width: 100%;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #FFF6E8;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  border-radius: 15px;
+  border: 1px solid #FFA015;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div strong {
+  display: block;
+  color: #333;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 25px;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div strong span {
+  color: #FFA015;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div p {
+  color: #A1A1A1;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-top: 12px;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 75px;
+  padding: 0 20px 20px;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  margin-bottom: 12px;
+  background-color: #CFCFCF;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info b {
+  display: block;
+  color: #FFA015;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info .btn-tel {
+  display: inline-block;
+  font-size: 14px;
+  color: #FFA015;
+  font-weight: 400;
+  line-height: 17px;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  padding-left: 23px;
+  margin-top: 5px;
+  background-image: url(/assets/images/ico_tel.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto auto;
+}
+.jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a:hover > div:before {
+  opacity: 1;
+}
+@media (max-width: 1024px) {
+  .jumbotron {
+    padding-bottom: 34px;
+  }
+  .jumbotron .visible-sm {
+    display: block;
+  }
+  .jumbotron .visible-lg {
+    display: none;
+  }
+  .jumbotron .section-header {
+    padding: 15px 0 10px;
+  }
+  .jumbotron .section-content .container {
+    padding: 0 15px;
+    max-width: 1270px;
+  }
+  .jumbotron .section-content .container > figure {
+    width: 142px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide {
+    width: 142px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div {
+    padding: 15px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div strong {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.5px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div p {
+    font-size: 10px;
+    line-height: 14px;
+    letter-spacing: -0.5px;
+    margin-top: 8px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info {
+    min-height: 63px;
+    padding: 0 15px 15px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info b {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .jumbotron .section-content .container .jumbo-slider .swiper-wrapper .swiper-slide .box > a > div .info .btn-tel {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 5px;
+    padding-left: 19px;
+    background-size: 14px auto;
+  }
+}
+
+/* loan-find */
+.loan-find .container {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.loan-find .container > article {
+  display: table-cell;
+  vertical-align: top;
+}
+.loan-find .container > article .article-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #FFA015;
+}
+.loan-find .container > article:first-child {
+  padding-right: 15px;
+}
+.loan-find .container > article:last-child {
+  padding-left: 15px;
+}
+@media (max-width: 1024px) {
+  .loan-find .container {
+    display: block;
+  }
+  .loan-find .container article {
+    display: block;
+    padding: 0 !important;
+  }
+  .loan-find .container article .article-header {
+    padding-bottom: 10px;
+  }
+  .loan-find .container article ~ article {
+    margin-top: 20px;
+  }
+}
+
+/* recommend-banner */
+.recommend-banner .section-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 30px;
+}
+.recommend-banner .section-header p {
+  color: #A1A1A1;
+}
+.recommend-banner .container > ul {
+  display: table;
+  width: calc(100% + 20px);
+  margin: 0 -10px;
+  table-layout: fixed;
+}
+.recommend-banner .container > ul > li {
+  display: table-cell;
+  vertical-align: top;
+  padding: 0 10px;
+}
+.recommend-banner .container > ul > li > div {
+  position: relative;
+  display: block;
+  padding: 20px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  border-radius: 15px;
+  border: 2px solid #FFA015;
+}
+.recommend-banner .container > ul > li > div img {
+  position: absolute;
+  top: -18px;
+  left: 20px;
+}
+.recommend-banner .container > ul > li > div small {
+  display: block;
+  font-size: 13px;
+  color: #FFA015;
+  line-height: 17px;
+  font-weight: 400;
+}
+.recommend-banner .container > ul > li > div strong {
+  display: block;
+  color: #333;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 22px;
+  margin-top: 10px;
+}
+.recommend-banner .container > ul > li > div strong span {
+  color: #FFA015;
+}
+.recommend-banner .container > ul > li > div p {
+  display: block;
+  font-size: 13px;
+  color: #7D7D7D;
+  font-weight: 400;
+  margin-top: 10px;
+}
+.recommend-banner .container > ul > li > div hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  margin: 10px 0;
+  background-color: #CACACA;
+}
+.recommend-banner .container > ul > li > div .btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.recommend-banner .container > ul > li > div .btns .tel-web {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  color: #FFA015;
+  line-height: 17px;
+  font-weight: 400;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  padding-left: 23px;
+  background-image: url(/assets/images/ico_tel.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto auto;
+}
+.recommend-banner .container > ul > li > div .btns .tel-mobile {
+  display: none;
+}
+.recommend-banner .container > ul > li > div .btns .sms-mobile {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .recommend-banner .container > ul > li > div .btns .tel-web {
+    display: none;
+  }
+  .recommend-banner .container > ul > li > div .btns .tel-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFA015;
+    color: #fff;
+    padding: 0 10px;
+    height: 25px;
+  }
+  .recommend-banner .container > ul > li > div .btns .sms-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    color: #FFA015;
+    padding: 0 10px;
+    height: 25px;
+    border: 1px solid #FFA015;
+  }
+}
+.recommend-banner .container > ul > li > div:hover {
+  background-color: #f1f1f1;
+}
+@media (max-width: 1024px) {
+  .recommend-banner .container > ul {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .recommend-banner .container > ul > li {
+    display: block;
+    padding: 0;
+  }
+  .recommend-banner .container > ul > li > a p {
+    margin-top: 7px;
+  }
+  .recommend-banner .container > ul > li ~ li {
+    margin-top: 30px;
+  }
+}
+
+/* inquiry-enterprise */
+.inquiry-enterprise {
+  padding: 40px 0 40px;
+}
+.inquiry-enterprise .container {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.inquiry-enterprise .container > article {
+  display: table-cell;
+  vertical-align: top;
+}
+.inquiry-enterprise .container > article .article-header {
+  position: relative;
+}
+.inquiry-enterprise .container > article .article-header > .title {
+  display: inline-block;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  padding-right: 20px;
+  background-image: url(/assets/images/main/ico_move_arrow.png);
+  background-repeat: no-repeat;
+  background-position: 100% calc(50% + 2px);
+  background-size: auto auto;
+}
+.inquiry-enterprise .container > article .article-header > .title:hover {
+  letter-spacing: 0.1px;
+}
+.inquiry-enterprise .container > article .article-header .btn-area {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.inquiry-enterprise .container > article .article-header .btn-area .btn-inquiry {
+  display: inline-block;
+  font-size: 13px;
+  color: #FFA015;
+  font-weight: bold;
+  letter-spacing: -0.26px;
+  line-height: 26px;
+  text-align: center;
+  padding: 0 13px;
+  border-radius: 32px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+  border: 2px solid #FFA015;
+}
+.inquiry-enterprise .container > article .article-header .btn-area .btn-inquiry:hover {
+  color: #fff;
+  background-color: #FFA015;
+}
+.inquiry-enterprise .container > article .article-content {
+  padding-top: 25px;
+}
+.inquiry-enterprise .container > article .article-content > div {
+  overflow: hidden;
+  height: 975px;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li.swiper-slide {
+  height: 84px;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 40px;
+  border-radius: 15px;
+  border-width: 2px;
+  border-style: solid;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box {
+  display: table;
+  width: 100%;
+  height: 80px;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl {
+  display: table-cell;
+  vertical-align: middle;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dt {
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 21px;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dt .area {
+  position: relative;
+  top: 1.5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: -0.24px;
+  font-style: normal;
+  line-height: 18px;
+  padding: 0 10px;
+  border-radius: 30px;
+  margin-right: 5px;
+  background-color: #FFA015;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dt span {
+  color: #FFA015;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dd {
+  margin-top: 7px;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dd > ul {
+  font-size: 0;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dd > ul > li {
+  display: inline-block;
+  vertical-align: top;
+  color: #A1A1A1;
+  font-size: 12px;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 400;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dd > ul > li:after {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  vertical-align: top;
+  width: 1px;
+  height: 10px;
+  content: "";
+  margin: 0 8px;
+  background-color: #A1A1A1;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a > .box > dl > dd > ul > li:last-child:after {
+  display: none;
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a .details {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  text-align: right;
+  transform: translateY(-50%);
+}
+.inquiry-enterprise .container > article .article-content > div > ul > li > a .details b {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #FFA015;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+}
+.inquiry-enterprise .container > article.inquiry-list {
+  padding-right: 15px;
+}
+.inquiry-enterprise .container > article.inquiry-list .article-content > div > ul > li > a {
+  border-color: #EAEAEA;
+}
+.inquiry-enterprise .container > article.inquiry-list .article-content > div > ul > li > a:hover {
+  background-color: #f1f1f1;
+}
+.inquiry-enterprise .container > article.enterprise-list {
+  padding-left: 15px;
+}
+.inquiry-enterprise .container > article.enterprise-list .article-content > div > ul > li > a {
+  border-color: #FFA015;
+}
+.inquiry-enterprise .container > article.enterprise-list .article-content > div > ul > li > a:hover {
+  background-color: #f1f1f1;
+}
+.inquiry-enterprise .container > article.enterprise-list .article-content > div > ul > li ~ li {
+  margin-top: 15px;
+}
+@media (max-width: 1024px) {
+  .inquiry-enterprise {
+    padding: 40px 0;
+  }
+  .inquiry-enterprise .container {
+    display: block;
+  }
+  .inquiry-enterprise .container article {
+    display: block;
+    padding: 0 !important;
+  }
+  .inquiry-enterprise .container article .article-header .title {
+    padding-right: 17px;
+    background-size: 7px auto;
+  }
+  .inquiry-enterprise .container article .article-content {
+    padding-top: 15px;
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li {
+    /*& ~ li {
+        margin-top: 8px;
+    }*/
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li > a {
+    padding: 0 30px;
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li > a .box > dl {
+    padding: 15px 0;
+    height: auto;
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li > a .box > dl > dt {
+    line-height: 22px;
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li > a .box > dl > dt .area {
+    top: 0;
+    margin-right: 0;
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li > a .box > dl > dt span {
+    display: block;
+  }
+  .inquiry-enterprise .container article .article-content > div > ul > li > a .details {
+    right: 30px;
+  }
+  .inquiry-enterprise .container article ~ article {
+    margin-top: 40px;
+  }
+  .inquiry-enterprise .container article.enterprise-list .article-content > div > ul > li ~ li {
+    margin-top: 8px;
+  }
+}
+
+.caution-banner img {
+  max-width: 100%;
+}
+.caution-banner .visible-lg {
+  display: block;
+}
+.caution-banner .visible-sm {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .caution-banner {
+    padding-bottom: 40px;
+  }
+  .caution-banner .visible-lg {
+    display: none;
+  }
+  .caution-banner .visible-sm {
+    display: block;
+  }
+}
+
+/* board-list */
+.board-list {
+  position: relative;
+  padding-top: 25px;
+}
+.board-list:before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 1240px;
+  height: 1px;
+  content: "";
+  background-color: #FFA015;
+  transform: translateX(-50%);
+}
+.board-list .container > ul {
+  display: table;
+  table-layout: fixed;
+  width: calc(100% + 50px);
+  margin: 0 -25px;
+}
+.board-list .container > ul > li {
+  display: table-cell;
+  vertical-align: top;
+  padding: 0 25px;
+}
+.board-list .container > ul > li .box {
+  position: relative;
+}
+.board-list .container > ul > li .box .title {
+  display: inline-block;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.board-list .container > ul > li .box .title:hover {
+  letter-spacing: 0.3px;
+}
+.board-list .container > ul > li .box .btn-more {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  color: #FFA015;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.28px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.board-list .container > ul > li .box .btn-more:hover {
+  letter-spacing: 0.3px;
+}
+.board-list .container > ul > li .box > ul {
+  margin-top: 20px;
+}
+.board-list .container > ul > li .box > ul > li a {
+  position: relative;
+  display: block;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 70px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.15s;
+  transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.board-list .container > ul > li .box > ul > li a .date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  color: #A1A1A1;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.26px;
+}
+.board-list .container > ul > li .box > ul > li a:hover {
+  opacity: 0.7;
+  color: #FFA015;
+}
+.board-list .container > ul > li .box > ul > li ~ li {
+  margin-top: 13px;
+}
+@media (max-width: 1280px) {
+  .board-list .container > ul {
+    width: calc(100% + 30px);
+    margin: 0 -15px;
+  }
+  .board-list .container > ul > li {
+    padding: 0 15px;
+  }
+}
+@media (max-width: 1024px) {
+  .board-list {
+    padding-top: 0;
+  }
+  .board-list:before {
+    display: none;
+  }
+  .board-list .container > ul {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .board-list .container > ul > li {
+    display: block;
+    padding: 0;
+  }
+  .board-list .container > ul > li ~ li {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #C2C2C2;
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  width: 100%;
+  z-index: 100;
+  transform: translateX(-50%);
+}
+.modal .container {
+  position: relative;
+}
+.modal .container .popup {
+  position: absolute;
+  top: 0;
+  left: 15px;
+}
+.modal .container .popup ~ .popup {
+  left: 100px;
+  z-index: 1;
+}
+.modal .container .popup .pop-content {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  border: 1px solid #e9e9e9;
+  background-color: #fff;
+  box-shadow: 4px 4px 12px rgba(134, 142, 150, 0.06);
+}
+.modal .container .popup .pop-content .modal-head {
+  position: relative;
+}
+.modal .container .popup .pop-content .modal-head h3 {
+  color: #333;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: -0.44px;
+}
+.modal .container .popup .pop-content .modal-head .modal-close {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: block;
+  transform: translateY(-50%);
+}
+.modal .container .popup .pop-content .modal-head .modal-close img {
+  display: block;
+  max-width: 100%;
+}
+.modal .container .popup .pop-content .modal-content {
+  padding-top: 12px;
+}
+.modal .container .popup .pop-content .modal-content > p {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E2E2E2;
+}
+.modal .container .popup .pop-content .modal-content > ol {
+  margin-top: 12px;
+}
+.modal .container .popup .pop-content .modal-content > ol > li {
+  position: relative;
+  color: #333;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.7px;
+  font-weight: 400;
+  padding-left: 36px;
+  counter-increment: list-index;
+}
+.modal .container .popup .pop-content .modal-content > ol > li b {
+  color: #FFA015;
+  font-weight: bold;
+}
+.modal .container .popup .pop-content .modal-content > ol > li span {
+  color: #A1A1A1;
+}
+.modal .container .popup .pop-content .modal-content > ol > li:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 26px;
+  height: 25px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: 26px;
+  text-align: center;
+  content: "0" counter(list-index);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background-color: #FFA015;
+}
+.modal .container .popup .pop-content .modal-content > ol > li ~ li {
+  margin-top: 22px;
+}
+.modal .container .popup .pop-content .modal-content > ol > li:nth-of-type(9) ~ li:before {
+  content: counter(list-index);
+}
+.modal .container .popup .modal-foot {
+  display: block;
+  overflow: hidden;
+  padding: 0 20px;
+  background-color: #000;
+}
+.modal .container .popup .modal-foot button {
+  display: inline-block;
+  vertical-align: top;
+  color: #fff;
+  font-size: 13px;
+  line-height: 36px;
+}
+.modal .container .popup .modal-foot button.btn-today {
+  float: left;
+}
+.modal .container .popup .modal-foot button.modal-close {
+  float: right;
+}
+@media (max-width: 1024px) {
+  .modal {
+    top: 100px;
+  }
+  .modal .container .popup {
+    width: calc(100% - 30px);
+  }
+  .modal .container .popup .pop-content {
+    padding: 15px;
+  }
+  .modal .container .popup .pop-content .modal-head h3 {
+    font-size: 14px;
+  }
+  .modal .container .popup .pop-content .modal-content {
+    padding-top: 10px;
+  }
+  .modal .container .popup .pop-content .modal-content > p {
+    font-size: 12px;
+  }
+  .modal .container .popup .pop-content .modal-content > ol > li {
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 30px;
+  }
+  .modal .container .popup .pop-content .modal-content > ol > li:before {
+    width: 20px;
+    height: 20px;
+    line-height: 22px;
+    font-size: 11px;
+  }
+  .modal .container .popup ~ .popup {
+    left: 15px;
+    top: 60px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

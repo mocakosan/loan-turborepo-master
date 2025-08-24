@@ -1,0 +1,34 @@
+<li>
+  <div
+    onclick="window.location.href='/enterprise/enterprise_details/<%= item.id %>'"
+  >
+    <div
+      class="top"
+      style="
+        background-image: url('/assets/images/<%= item.backgroundImage %>');
+      "
+    >
+      <b
+        ><span><%= item.title1 %></span><br />
+        <%= item.title2 %></b
+      >
+    </div>
+    <div class="contents">
+      <span><%= item.lenderName %></span>
+      <p><%- item.content %></p>
+      <hr />
+
+      <div class="btns">
+        <a class="tel-web" href="tel:<%= item.phoneNumber %>"
+          ><%= item.phoneNumber %></a
+        >
+        <a class="tel-mobile" href="tel:<%= item.phoneNumber %>">전화하기</a>
+        <a
+          class="sms-mobile"
+          href="sms:<%= item.phoneNumber %>?body=대출이 필요하여 추천대출 보고 연락드립니다~"
+          >문자하기</a
+        >
+      </div>
+    </div>
+  </div>
+</li>

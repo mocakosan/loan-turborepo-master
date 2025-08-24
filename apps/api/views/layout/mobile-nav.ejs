@@ -1,0 +1,30 @@
+<nav id="nav">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="/community/community_intro"><span>커뮤니티</span></a>
+      </li>
+      <li>
+        <a href="/guide/customer_guide"><span>이용안내</span></a>
+      </li>
+      <li>
+        <a href="/service/notice_list"><span>고객센터</span></a>
+      </li>
+      <li>
+        <a href="/introduction/introduce"><span>회사소개</span></a>
+      </li>
+      <li>
+        <a href="/guide/notandum"><span>주의사항</span></a>
+      </li>
+    </ul>
+    <div class="btn-area">
+      <% if (user) { %>
+      <a href="/auth/logout">로그아웃</a>
+      <% } else { %>
+      <a href="/member/login">로그인</a>
+      <% } %>
+
+      <a href="/service/advertising_inquiry">광고문의</a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,50 @@
+<div class="global-search">
+  <div class="container">
+    <div class="search-form">
+      <small>전국 최다 대출업체 등록,</small>
+      <h3>나에게 딱 맞는 대출업체 찾기</h3>
+
+      <form
+        action="/enterprise/items_enterprise"
+        method="GET"
+        class="form-group"
+      >
+        <input type="hidden" name="category" value="<%= category %>" />
+        <input
+          type="text"
+          name="search"
+          class="form-control"
+          placeholder="검색어를 입력해 주세요"
+          value="<%= search %>"
+        />
+        <button type="submit" class="btn-search">
+          <img src="/assets/images/btn_global_search.png" alt="" />
+        </button>
+      </form>
+
+      <div class="info">
+        <b>Today</b>
+        <ul>
+          <li>
+            <dl>
+              <dt>오늘 방문자</dt>
+              <dd><%= todayVisitCount %></dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>누적 방문자</dt>
+              <dd><%= totalVisitCount %></dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>실시간 대출문의</dt>
+              <dd><%= totalLoanInquiryCount %></dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

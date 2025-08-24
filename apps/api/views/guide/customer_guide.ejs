@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- meta -->
+    <%- include("../layout/meta") %>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+    <link rel="stylesheet" href="/assets/css/guide.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <%- include("../layout/header") %>
+
+    <!-- nav -->
+    <nav id="nav">
+      <div class="container">
+        <ul>
+          <li>
+            <a href="/community/community_intro"><span>커뮤니티</span></a>
+          </li>
+          <li>
+            <a href="/guide/customer_guide"><span>이용안내</span></a>
+          </li>
+          <li>
+            <a href="/service/notice_list"><span>고객센터</span></a>
+          </li>
+          <li>
+            <a href="/introduction/introduce"><span>회사소개</span></a>
+          </li>
+          <li>
+            <a href="/guide/notandum"><span>주의사항</span></a>
+          </li>
+        </ul>
+        <div class="btn-area">
+          <a href="/member/join">회원가입</a>
+          <a href="/service/advertising_inquiry">광고문의</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- content -->
+    <main id="content">
+      <!-- global-search -->
+      <%- include("../form/find-lender-by-region-form", { sido: "", search: "" }) %>
+
+      <!-- sub-layout -->
+      <section class="sub-layout customer-guide">
+        <div class="container">
+          <nav class="lnb">
+            <div class="lnb-header">
+              <small>대출업체가 모두 한 곳에, 추천대출!</small>
+              <strong>이용안내</strong>
+            </div>
+            <div class="lnb-body">
+              <ul>
+                <li class="active">
+                  <a href="/guide/customer_guide">고객이용안내</a>
+                </li>
+                <li><a href="/guide/enterprise_guide">업체이용안내</a></li>
+                <li><a href="/guide/notandum">이용시 주의사항</a></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="sub-content">
+            <div class="title-area">
+              <strong>이용안내</strong>
+              <small>대출업체가 모두 한 곳에, 추천대출!</small>
+            </div>
+            <article>
+              <div class="article-header">
+                <h3>
+                  전국 최다 지점 대출업체 등록
+                  <span
+                    >추천대출!<br />
+                    나에게 맞는 대출업체</span
+                  >를 한 눈에!
+                </h3>
+              </div>
+              <div class="article-content">
+                <p>
+                  대출이 필요하신 분들께 <b>정식대부등록업체 정보</b>를 제공하고
+                  상담 받으실 수 있습니다.<br />
+                  실시간 상담문의와 나에게 맞는 대출업체에 연락하여 직접 쉽고
+                  편리하게 상담 받으실 수 있습니다.<br />
+                  대출광고안내 회원가입은 모바일이나 PC로 이용해주세요.<br />
+                  개인회원은 회원 가입없이 무료로 이용하실 수 있습니다.<br />
+                  회원가입시 혜택이 주어집니다.
+                </p>
+              </div>
+            </article>
+            <article>
+              <div class="article-header">
+                <h3><span>실시간 대출</span> 문의란?</h3>
+              </div>
+              <div class="article-content">
+                <p>
+                  나에게 맞는 대출업체를 찾고자 하는 개인 고객님이 실시간
+                  대출문의글 작성시<br />
+                  고객님께 맞는 대출업체가 문의글에 신청을 하는 효과를
+                  가져옵니다.<br />
+                  상담여부가 결정되면 '상담가능'을 등록한 업체정보를 보시고 직접
+                  상담 하실 수 있습니다.<br />
+                  기존 방식의 나에게 맞지 않는 상담은 이제 그만!<br />
+                  편리하게 상담 하시면 됩니다.
+                </p>
+                <span
+                  >*상담 내용이나 대출 가능여부는 추천대출과 전혀 상관
+                  없습니다.</span
+                >
+              </div>
+            </article>
+            <ul class="dott-list">
+              <li>
+                기업회원 회원가입시 <b>대부업등록증, 사업자등록증</b>을 사진이나
+                팩스로 보내주셔야 합니다.
+              </li>
+              <li>모두 확인 후 광고개제가 가능합니다.</li>
+            </ul>
+            <div class="btn-area">
+              <a href="tel:01065027958" class="btn-tel"
+                ><i></i>상담전화 010-6502-7958</a
+              >
+              <a href="mailto:chucheon114@naver.com" class="btn-mail"
+                ><i></i>이메일 chucheon114@naver.com</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- terms-list -->
+    <%- include("../layout/terms-list") %>
+
+    <!-- quick-banner -->
+    <%- include("../layout/quick-banner") %>
+
+    <!-- footer -->
+    <%- include("../layout/footer") %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/sub.js"></script>
+  </body>
+</html>

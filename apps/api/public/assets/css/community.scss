@@ -1,0 +1,244 @@
+@import 'common';
+
+/* sub-layout */
+.sub-layout {
+    margin-top: 40px;
+    padding-bottom: 100px;
+    .article-header {
+        padding-bottom: 20px;
+        h3 {
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.41px;
+        }
+        p {
+            color: #888;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 10px;
+            letter-spacing: -.9px;
+        }
+    }
+    .pagination {
+        margin-top: 40px;
+    }
+    @media(max-width: $md) {
+        margin-top: 0;
+        padding-bottom: 20px;
+        .article-header {
+            text-align: center;
+            padding-bottom: 30px;
+            h3 {
+                font-size: 20px;
+            }
+        }
+        .container {
+            .sub-content {
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+/* global-search */
+.global-search {
+    @media(max-width: $md) {
+        display: none;
+    }
+}
+
+/* community-intro */
+.community-intro {
+    .article-content {
+        > ul {
+            overflow: hidden;
+            > li {
+                float: left;
+                width: 50%;
+                .box {
+                    border: 1px solid #EEE;
+                    .box-header {
+                        > a {
+                            display: block;
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #333;
+                            line-height: 42px;
+                            padding: 0 10px;
+                            background: rgba(255, 160, 21, 0.13);
+                            &:after {
+                                position: relative;
+                                top: -2px;
+                                display: inline-block;
+                                vertical-align: middle;
+                                margin-left: 7px;
+                                width: 7px;
+                                height: 12px;
+                                content: '';
+                                background-image: url(/assets/images/sub/ico_move_arrow.png);
+                                background-repeat: no-repeat;
+                                background-position: 50% 50%;
+                                background-size: auto auto;
+                            }
+                        }
+                    }
+                    .box-content {
+                        padding: 10px 0;
+                        > ul {
+                            > li {
+                                > a {
+                                    position: relative;
+                                    display: block;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
+                                    color: #333;
+                                    font-size: 13px;
+                                    padding: 0 100px 0 15px;
+                                    line-height: 40px;
+                                    .date {
+                                        position: absolute;
+                                        top: 50%;
+                                        right: 15px;
+                                        color: #999;
+                                        font-size: 13px;
+                                        font-weight: 400;
+                                        @include pre();
+                                        transform: translateY(-50%);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                > ul {
+                    font-size: 0;
+                    > li {
+                        display: inline-block;
+                        vertical-align: top;
+                        width: 50%;
+                        > a {
+                            display: table;
+                            width: 100%;
+                            height: 264px;
+                            @include transition();
+                            background: rgba(255, 160, 21, 0.13);
+                            > figure {
+                                display: table-cell;
+                                vertical-align: middle;
+                                img {
+                                    display: block;
+                                    max-width: 100%;
+                                    margin: 0 auto;
+                                }
+                                figcaption {
+                                    text-align: center;
+                                    padding-top: 15px;
+                                    b {
+                                        display: block;
+                                        font-size: 16px;
+                                        color: #333;
+                                        font-weight: bold;
+                                        line-height: 23px;
+                                        letter-spacing: -0.328px;
+                                    }
+                                    p {
+                                        color: #7C7C7C;
+                                        font-size: 13px;
+                                        font-weight: 400;
+                                        line-height: 17px;
+                                        margin-top: 5px;
+                                    }
+                                }
+                            }
+                            &:hover {
+                                background: rgba(255, 160, 21, 0.6);
+                            }
+                        }
+                        &:first-child {
+                            padding-right: 6px;
+                        }
+                        &:last-child {
+                            padding-right: 6px;
+                        }
+                    }
+                }
+                &:nth-of-type(2n + 1) {
+                    clear: left;
+                    padding-right: 10px;
+                }
+                &:nth-of-type(2n + 2) {
+                    padding-left: 10px;
+                }
+                &:nth-of-type(2) ~ li {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+    @media(max-width: $md) {
+        .article-content {
+            > ul {
+                > li {
+                    float: none;
+                    width: 100%;
+                    padding: 0 !important;
+                    > ul {
+                        > li {
+                            > a {
+                                height: 230px;
+                                > figure {
+                                    > figcaption {
+                                        p {
+                                            font-size: 11px;
+                                            letter-spacing: -.5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & ~ li {
+                        margin-top: 25px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* qna-list */
+.qna-list {
+    .search-area {
+        margin-top: 60px;
+    }
+    @media(max-width: $md) {
+        .search-area {
+            margin-top: 30px;
+        }
+    }
+}
+
+/* board-view */
+.board-view {
+    .btn-area {
+        margin-top: 35px;
+        .btn-board {
+            display: block;
+            color: #888;
+            width: 195px;
+            font-size: 13px;
+            font-weight: 400;
+            text-align: center;
+            line-height: 44px;
+            border: 1px solid #eee;
+            margin: 0 auto;
+        }
+    }
+    @media(max-width: $md) {
+        .btn-area {
+            margin-top: 60px;
+        }
+    }
+}

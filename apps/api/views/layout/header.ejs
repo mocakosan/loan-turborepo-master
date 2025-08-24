@@ -1,0 +1,88 @@
+<header id="header">
+  <div class="header-top">
+    <div class="container">
+      <a href="javascript:;">추천대출 대부중개 2025-충북청주-0005</a>
+      <div class="header-util">
+        <ul>
+          <li>
+            <a href="/community/community_intro">
+              <img src="/assets/images/ico_community.png" alt="" />
+              <span>커뮤니티</span>
+            </a>
+          </li>
+          <li>
+            <a href="/guide/customer_guide">
+              <img src="/assets/images/ico_customer_guide.png" alt="" />
+              <span>이용안내</span>
+            </a>
+          </li>
+          <li>
+            <a href="/service/notice_list">
+              <img src="/assets/images/ico_customer_center.png" alt="" />
+              <span>고객센터</span>
+            </a>
+          </li>
+          <li>
+            <a href="/introduction/introduce">
+              <img src="/assets/images/ico_introduce.png" alt="" />
+              <span>회사소개</span>
+            </a>
+          </li>
+          <% if (user) { %>
+          <li>
+            <a href="/enterprise/lately_visit">최근 본 업체 </a>
+          </li>
+          <% } %>
+          <li><a href="/guide/notandum">주의사항</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <nav id="gnb">
+    <div class="container">
+      <h1 class="logo">
+        <a href="/">
+          <img src="/assets/images/img_logo.svg" alt="" />
+        </a>
+      </h1>
+      <div class="menu-list">
+        <ul>
+          <li>
+            <a href="/enterprise/area_enterprise"
+              ><span>지역별 업체 <i class="ico-new"></i></span
+            ></a>
+          </li>
+          <li>
+            <a href="/enterprise/items_enterprise"
+              ><span>상품별 업체 <i class="ico-new"></i></span
+            ></a>
+          </li>
+          <li>
+            <a href="/realtime/real_inquiry"
+              ><span>실시간 대출문의 <i class="ico-new"></i></span
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div class="btns">
+        <% if (user) { %>
+        <a href="/auth/logout">로그아웃</a>
+        <% } else { %>
+        <a href="/member/login">로그인</a>
+        <% } %>
+
+        <a href="/service/advertising_inquiry">
+          <img src="/assets/images/ico_crown.png" alt="" />
+          <span>광고문의</span>
+        </a>
+      </div>
+      <div class="btn-area">
+        <button type="button" class="btn-nav">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
