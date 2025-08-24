@@ -1,0 +1,1 @@
+FROM mocakosan/loan-api:latest
