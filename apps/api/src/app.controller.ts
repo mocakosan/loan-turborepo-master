@@ -1,4 +1,5 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { PrismaService } from './prisma/prisma.service';
@@ -183,5 +184,17 @@ export class AppController {
         createdAt: format(item.createdAt, 'yyyy.MM.dd'),
       })),
     };
+  }
+
+  // 헬스체크 엔드포인트 - JSON 응답으로 별도 처리
+  @Get('health')
+  healthCheck(@Res() res: Response) {
+    return res.json({
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      environment: process.env.NODE_ENV || 'development',
+      service: 'loan-api',
+    });
   }
 }

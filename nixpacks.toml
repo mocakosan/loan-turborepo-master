@@ -1,0 +1,18 @@
+[phases.setup]
+nixPkgs = ["nodejs-18_x"]
+cmds = ["npm install -g pnpm@9.0.0"]
+
+[phases.install]
+cmds = ["pnpm install --frozen-lockfile"]
+
+[phases.build]
+cmds = ["pnpm run build --filter=admin"]
+
+[start]
+cmd = "pnpm --filter=admin run start"
+
+[variables]
+NODE_ENV = "production"
+
+providers = ["node"]
+
